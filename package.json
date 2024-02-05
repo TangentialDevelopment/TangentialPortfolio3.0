@@ -1,0 +1,19 @@
+{
+  "name": "proj2",
+  "version": "1.0.0",
+  "description": "01-30: initialization",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch source/scss/style.scss:compiled/css/style.css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TangentialDevelopment/TangentialPortfolio3.0.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TangentialDevelopment/TangentialPortfolio3.0/issues"
+  },
+  "homepage": "https://github.com/TangentialDevelopment/TangentialPortfolio3.0#readme"
+}
