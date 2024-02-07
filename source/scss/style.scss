@@ -1,6 +1,12 @@
 @import "_variables";
 $font-stack: Helvetica, sans-serif;
 
+.hide {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+
 h1 {
     font-size: 20px;
     color: $color1;
