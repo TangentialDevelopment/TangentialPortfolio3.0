@@ -4,7 +4,7 @@
   "description": "01-30: initialization",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch source/scss/style.scss:compiled/css/style.css --style compressed"
+    "sass": "sass --watch source/scss/:compiled/css/ --style compressed"
   },
   "repository": {
     "type": "git",

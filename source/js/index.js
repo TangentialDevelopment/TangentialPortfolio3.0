@@ -17,8 +17,7 @@ function init() {
     $('.content').addClass('hide');
 
     $(this).addClass('active');
-    console.log($(this));
-
+    
     blocktext = selector + this.id.toString().slice(-1);
     $(blocktext).removeClass('hide');
   });

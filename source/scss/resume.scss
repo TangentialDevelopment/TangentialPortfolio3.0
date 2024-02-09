@@ -1,0 +1,25 @@
+@import "_variables";
+
+p {
+    font-family: $fontfamily-text;
+}
+
+.ul-tree {
+    width:100%;
+    white-space: nowrap;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+
+    h4 {
+        text-align: center;
+    }
+    p {
+        margin-bottom: 0;
+    }
+    li {
+        display: inline-block;
+        margin: 0 5px 0 5px;
+    }
+}
