@@ -1,22 +1,25 @@
 // colors
 
-$color1: #04080f;
-$color2: #507dbc;
-$color3: #a1c6ea;
-$color4: #bbd1ea;
-$color5: #dae3e5;
-$color6: #f9b939;
-$color7: #1B130E;
+$color1: #cfd4e6;
+$color2: #d2d5e3;
+$color3: #d4d6e1;
+$color4: #d7d7de;
+$color5: #d9d8dc;
+$color6: #dcd9da;
+$color7: #ded9d7;
+$color8: #e1dad4;
+$color9: #e3dbd2;
+$color10:#e6dccf;
 
 //blendmode
-//$lighten-base: luminosity;
+$lighten-base: luminosity;
 
 //text
 $fontfamily-text: 'Alegreya Sans SC', sans-serif;
-// $fontsize-text: 3vw;
+$fontsize-text: 3vw;
 // $mixblend-text: color-dodge;
-// $padding-text: 0;
-// $margin-text: 0;
+$padding-text: 0;
+$margin-text: 0;
 
 //navigation
 $font-nav: Georgia, "Trebuchet MS", Arial, sans-serif;

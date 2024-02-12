@@ -4,3 +4,4 @@
 02-07 add jquery and basic navigation experiment
 02-08 initial blocking of resume page
 02-09 content and layout of resume page
+02-12 color and some navbar styling
