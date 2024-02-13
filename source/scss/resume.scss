@@ -5,7 +5,7 @@ p {
 }
 
 .ul-tree {
-    width:100%;
+    max-width:100%;
     white-space: nowrap;
 
     display: flex;
@@ -30,10 +30,18 @@ body {
 
 .skills {
     background-color: $color10;
+    max-width: 100%;
 }
 
 .experience {
     background-color: $color9;
+}
+
+.experience-tree {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: $color5;
 }
 
 .education {
