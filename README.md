@@ -6,3 +6,4 @@
 02-09 content and layout of resume page
 02-12 color and some navbar styling'
 02-13 light changes to experience boxes
+02-14 added tabs to resume page
