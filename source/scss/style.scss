@@ -92,3 +92,20 @@ body {
 .education {
     background-color: $color8;
 }
+
+.object {
+    display: flex;
+    justify-content: center;
+
+    .sub-onject {
+        display: block;
+    }
+
+    h2 {
+        text-align: left;
+    }
+    .tabbed {
+        text-align: left;
+        
+    }
+}
