@@ -21,24 +21,12 @@ body {
     margin: 1% 0 2%;
 }
 
-.nav-bar {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
+.nav-item {
+    border: 3px solid $color7;
 }
 
-.navbar-brand {
-    background-color: $color10;
-    padding: 0.5rem 1rem;
-}
-
-.nav-tabs {
-    border-bottom: none;
-}
-
-.nav-link {
-    background-color: $color10;
+.selector {
+    padding: 10px;
 }
 
 p {
@@ -70,7 +58,9 @@ body {
 }
 
 .current {
-    color:red;
+    font-size: 45px;
+    background-color: $color7;
+    margin-bottom: 0;
 }
 
 .skills {

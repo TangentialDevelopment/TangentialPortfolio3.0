@@ -9,3 +9,4 @@
 02-14 added tabs to resume page
 02-15 light changes
 02-16 updated object
+02-19 styled the page more
