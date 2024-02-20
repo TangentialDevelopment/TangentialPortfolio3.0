@@ -16,6 +16,41 @@ body {
     text-align: center;
 }
 
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=90);
+    // -moz-opacity: 0.7;
+    // -khtml-opacity: 0.7;
+    opacity: 0.9;
+    z-index: 100;
+    display: none;
+}
+
+.popup-content {
+    padding: 14px 10px;
+    line-height: 1.5;
+}
+
+.popup-load {
+    margin: 0 auto;
+    display: none;
+    position: fixed;
+    z-index: 101;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -300px;
+}
+
+.close {
+    text-decoration: none;
+}
+
 .nav {
     width: 100%;
     margin: 1% 0 2%;
@@ -87,8 +122,18 @@ body {
     display: flex;
     justify-content: center;
 
-    .sub-onject {
+    .sub-object {
         display: block;
+        min-width: 600px;
+        width: 600px;
+        min-height: 150px;
+        margin: 100px auto;
+        position: relative;
+        z-index: 103;
+        padding: 15px 35px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px #000;
+        background-color: $color1;
     }
 
     h2 {

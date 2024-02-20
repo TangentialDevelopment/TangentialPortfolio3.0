@@ -34,6 +34,23 @@ function init() {
       text = section +this.innerHTML.toLowerCase();
       $(text).removeClass('hide');
     });
+
+    $(function() {
+      var overlay = $('#overlay');
+      overlay.show();
+      $('.popup-load').show();
+      $('.close').click(function() {
+        $('.popup-load').hide();
+        overlay.appendTo(document.body).remove();
+        return false;
+      });
+      
+      // $('.x').click(function() {
+      //   $('.popup').hide();
+      //   overlay.appendTo(document.body).remove();
+      //   return false;
+      // });
+    });
 }
 
 init();
