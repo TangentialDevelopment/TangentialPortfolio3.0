@@ -21,7 +21,7 @@ function init() {
   //   blocktext = selector + this.id.toString().slice(-1);
   //   $(blocktext).removeClass('hide');
   // });
-
+  
   section = '.'
     $('.experience').addClass('hide');
     $('.education').addClass('hide');

@@ -11,3 +11,4 @@
 02-16 updated object
 02-19 styled the page more
 02-20 added header page
+02-21 stylized array
