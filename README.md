@@ -12,3 +12,4 @@
 02-19 styled the page more
 02-20 added header page
 02-21 stylized array
+02-22 positioned landing array
