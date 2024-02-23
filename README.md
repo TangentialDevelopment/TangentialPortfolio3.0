@@ -13,3 +13,4 @@
 02-20 added header page
 02-21 stylized array
 02-22 positioned landing array
+02-21 started mini game
