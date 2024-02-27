@@ -1,1 +1,1 @@
-.list{display:flex;flex-direction:column;justify-content:center;align-items:center}.list img{max-width:100px}/*# sourceMappingURL=games.css.map */
+.list{display:flex;flex-direction:column-reverse;justify-content:center;align-items:center}.list img{max-width:80px}.paddles{max-width:150px}/*# sourceMappingURL=games.css.map */

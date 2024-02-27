@@ -1,10 +1,14 @@
 .list {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
 
     img {
-        max-width: 100px;
+        max-width: 80px;
     }
+}
+
+.paddles {
+    max-width: 150px;
 }
