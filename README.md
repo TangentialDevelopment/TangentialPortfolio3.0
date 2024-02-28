@@ -16,3 +16,4 @@
 02-21 started mini game
 02-26 started sorting logic
 02-27 game elements now spawn and move correctly
+02-28 added lockout on wrong selection

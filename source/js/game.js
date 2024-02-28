@@ -28,24 +28,43 @@ function updateImages(order, img) {
     }
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
 function init() {
     var sequence = []
     var img = document.getElementsByName('canvas');
+    var keyActive = true
 
     sequence = initialImages(sequence, img);
     updateImages(sequence, img);
 
     document.onkeydown = function (e) {
-        switch (e.key) {
-            case 'ArrowLeft':
-                console.log('left');
-                break;
-            case 'ArrowRight':
-                console.log('right');
-                break;
+        if (keyActive) {
+            switch (e.key) {
+                case 'ArrowLeft':
+                    if (sequence[0] == '../../source/images/cake.png') {
+                        updateImages(sequence, img);
+                    } else {
+                        keyActive = false;
+                        setTimeout(() => {
+                            keyActive = true;
+                        }, 5000);
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (sequence[0] == '../../source/images/bomb.png') {
+                        updateImages(sequence, img);
+                    } else {
+                        keyActive = false;
+                        setTimeout(() => {
+                            keyActive = true;
+                        }, 5000);
+                    }
+                    break;
+            }
         }
-
-        updateImages(sequence, img);
     };
 }
 
