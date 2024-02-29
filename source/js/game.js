@@ -36,6 +36,8 @@ function init() {
     var sequence = []
     var img = document.getElementsByName('canvas');
     var keyActive = true
+    var score = 0;
+    var visiblescore = document.getElementById('score');
 
     sequence = initialImages(sequence, img);
     updateImages(sequence, img);
@@ -46,21 +48,29 @@ function init() {
                 case 'ArrowLeft':
                     if (sequence[0] == '../../source/images/cake.png') {
                         updateImages(sequence, img);
+                        score += 100;
+                        visiblescore.innerHTML = (score);
                     } else {
                         keyActive = false;
+                        $('.blackout').show();
                         setTimeout(() => {
                             keyActive = true;
-                        }, 5000);
+                            $('.blackout').hide();
+                        }, 3000);
                     }
                     break;
                 case 'ArrowRight':
                     if (sequence[0] == '../../source/images/bomb.png') {
                         updateImages(sequence, img);
+                        score += 100;
+                        visiblescore.innerHTML = (score);
                     } else {
                         keyActive = false;
+                        $('.blackout').show();
                         setTimeout(() => {
                             keyActive = true;
-                        }, 5000);
+                            $('.blackout').hide();
+                        }, 3000);
                     }
                     break;
             }
