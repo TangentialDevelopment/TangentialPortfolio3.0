@@ -18,3 +18,4 @@
 02-27 game elements now spawn and move correctly
 02-28 added lockout on wrong selection
 02-29 added score
+03-01 added timer

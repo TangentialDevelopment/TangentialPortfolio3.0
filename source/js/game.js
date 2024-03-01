@@ -28,9 +28,35 @@ function updateImages(order, img) {
     }
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds; 
+        
+        if (minutes==0 && seconds==0) {
+            clearInterval(intervalId);
+            keyActive = false;
+            $('.blackout').show();
+        }
+
+        if (diff <= 0) {
+            start = Date.now() + 1000;
+        }
+    };
+    timer();
+    var intervalId = setInterval(timer, 1000);
+}
 
 function init() {
     var sequence = []
@@ -38,6 +64,9 @@ function init() {
     var keyActive = true
     var score = 0;
     var visiblescore = document.getElementById('score');
+    var count = 60*5;
+    var timer = document.querySelector('#timer');
+    startTimer(count, timer);
 
     sequence = initialImages(sequence, img);
     updateImages(sequence, img);
