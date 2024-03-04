@@ -13,19 +13,33 @@ function initialImages(order, img) {
             order[i] = temp;
         }
     }
+    for (let j=0; j<4; j++) {
+        temp = getImage();
+        order.push(temp);
+    }
 
     return order;
 }
 
-function updateImages(order, img) {
-    temp = getImage();
-    order.shift();
-    order.push(temp);
+function updateImages(order, img, counter) {
+    if (counter == 17) {
+        order.shift();
+        order.push('../../source/images/scake.png');
+    } else if ((counter+3) % 20 == 1 && counter>20) {
+        order.shift();
+        order.push('../../source/images/scake.png');
+    } else {
+        temp = getImage();
+        order.shift();
+        order.push(temp);
+    }
 
-    for (let i=0; i<order.length; i++) {
+    for (let i=0; i<6; i++) {
         var temp = order[i]
         img[i].src = temp;
     }
+
+    return counter+=1;
 }
 
 function startTimer(duration, display) {
@@ -63,22 +77,32 @@ function init() {
     var img = document.getElementsByName('canvas');
     var keyActive = true
     var score = 0;
+    var streak = 0;
+    var counter = 0;
     var visiblescore = document.getElementById('score');
     var count = 60*5;
     var timer = document.querySelector('#timer');
-    startTimer(count, timer);
+
+    //PUT THE TIMER BACK
+    // startTimer(count, timer);
 
     sequence = initialImages(sequence, img);
-    updateImages(sequence, img);
+    counter = updateImages(sequence, img, counter);
 
     document.onkeydown = function (e) {
         if (keyActive) {
             switch (e.key) {
                 case 'ArrowLeft':
                     if (sequence[0] == '../../source/images/cake.png') {
-                        updateImages(sequence, img);
+                        counter = updateImages(sequence, img, counter);
                         score += 100;
                         visiblescore.innerHTML = (score);
+                        streak += 1;
+                    } else if (sequence[0] == '../../source/images/scake.png'){
+                        counter = updateImages(sequence, img, counter);
+                        score += 100;
+                        visiblescore.innerHTML = (score);
+                        streak += 1;
                     } else {
                         keyActive = false;
                         $('.blackout').show();
@@ -86,13 +110,15 @@ function init() {
                             keyActive = true;
                             $('.blackout').hide();
                         }, 3000);
+                        streak=0;
                     }
                     break;
                 case 'ArrowRight':
                     if (sequence[0] == '../../source/images/bomb.png') {
-                        updateImages(sequence, img);
+                        counter = updateImages(sequence, img, counter);
                         score += 100;
                         visiblescore.innerHTML = (score);
+                        streak += 1;
                     } else {
                         keyActive = false;
                         $('.blackout').show();
@@ -100,6 +126,7 @@ function init() {
                             keyActive = true;
                             $('.blackout').hide();
                         }, 3000);
+                        streak=0;
                     }
                     break;
             }
