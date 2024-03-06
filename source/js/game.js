@@ -1,27 +1,37 @@
 var images = ['../../source/images/cake.png','../../source/images/bomb.png'];
+var simages = ['../../source/images/cake.png','../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/strawberry.png']
+var imagesp = ['../../source/images/cake.png','../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/strawberry.png','../../source/images/kitty.png','../../source/images/timebomb.png']
 
-function getImage() {
-    var num = Math.floor(Math.random()*2);
-    return images[num];
+function getImage(streak) {
+    if (streak > 400) {
+        var num = Math.floor(Math.random()*6);
+        return imagesp[num];
+    } else if (streak > 200) {
+        var num = Math.floor(Math.random()*4);
+        return simages[num];
+    } else {
+        var num = Math.floor(Math.random()*2);
+        return images[num];
+    }
 }
 
 function initialImages(order, img) {
     for (let i=0; i<img.length; i++) {
         var src = img[i].getAttribute('src');
         if (!src) {
-            var temp = getImage()
+            var temp = getImage(0)
             order[i] = temp;
         }
     }
     for (let j=0; j<4; j++) {
-        temp = getImage();
+        temp = getImage(0);
         order.push(temp);
     }
 
     return order;
 }
 
-function updateImages(order, img, counter) {
+function updateImages(order, img, counter, streak) {
     if (counter == 17) { //17
         order.shift();
         order.push('../../source/images/scake.png');
@@ -29,7 +39,7 @@ function updateImages(order, img, counter) {
         order.shift();
         order.push('../../source/images/scake.png');
     } else {
-        temp = getImage();
+        temp = getImage(streak);
         order.shift();
         order.push(temp);
     }
@@ -128,37 +138,39 @@ function opps(streak) {
 }
 
 function init() {
-    var sequence = []
+    var sequence = [];
     var img = document.getElementsByName('canvas');
     var keyActive = true
     var score = 0;
     var streak = 0;
     var counter = 0;
     var add = [];
-    var count = 60*5;
+    var count = 60;
     var timer = document.querySelector('#timer');
     var visibleScore = document.getElementById('score');
     var visibleMultiplyer = document.getElementById('multiplier');
+    left = ['../../source/images/cake.png','../../source/images/strawberry.png','../../source/images/kitty.png'];
+    right = ['../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/timebomb.png'];
 
     //PUT THE TIMER BACK
     // startTimer(count, timer);
 
     sequence = initialImages(sequence, img);
-    counter = updateImages(sequence, img, counter);
+    counter = updateImages(sequence, img, counter, streak);
 
     document.onkeydown = function (e) {
         if (keyActive) {
             switch (e.key) {
                 case 'ArrowLeft':
-                    if (sequence[0] == '../../source/images/cake.png') {
-                        counter = updateImages(sequence, img, counter);
+                    if (left.includes(sequence[0])) {
+                        counter = updateImages(sequence, img, counter, streak);
                         add = addScore(score, streak);
                         score = add[0];
                         streak = add[1];
                         visibleScore.innerHTML = score;
                         visibleMultiplyer.innerHTML = streak;
                     } else if (sequence[0] == '../../source/images/scake.png'){
-                        counter = updateImages(sequence, img, counter);
+                        counter = updateImages(sequence, img, counter, streak);
                         cakify(sequence, img);
                         add = addScore(score, streak);
                         score = add[0];
@@ -170,8 +182,8 @@ function init() {
                     }
                     break;
                 case 'ArrowRight':
-                    if (sequence[0] == '../../source/images/bomb.png') {
-                        counter = updateImages(sequence, img, counter);
+                    if (right.includes(sequence[0])) {
+                        counter = updateImages(sequence, img, counter, streak);
                         add = addScore(score, streak);
                         score = add[0];
                         streak = add[1];
