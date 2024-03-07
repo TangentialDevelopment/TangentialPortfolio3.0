@@ -64,36 +64,6 @@ function cakify(order, img) {
     }
 }
 
-function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-    function timer() {
-        diff = duration - (((Date.now() - start) / 1000) | 0);
-
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds; 
-        
-        if (minutes==0 && seconds==0) {
-            clearInterval(intervalId);
-            keyActive = false;
-            $('.blackout').show();
-        }
-
-        if (diff <= 0) {
-            start = Date.now() + 1000;
-        }
-    };
-    timer();
-    var intervalId = setInterval(timer, 1000);
-}
-
 function addScore(score, streak) {
     if (streak >= 400) {
         streak += 5;
@@ -127,39 +97,89 @@ function addScore(score, streak) {
     return [score, streak]
 }
 
-function opps(streak) {
-    keyActive = false;
+function threeSecondLockout(load, streak) {
+    var displayTimer = document.getElementById('timer');
     $('.blackout').show();
-    setTimeout(() => {
-        keyActive = true;
-        $('.blackout').hide();
-    }, 3000);
-    streak.innerHTML = '0';
+    $('.game-start').show();
+    if (displayTimer.textContent != '0') {
+        var timed = document.querySelector('#inital-timer');
+
+        var initial = Date.now(),
+            length,
+            display;
+        function initalTime() {
+            length = 3 - (((Date.now() - initial) / 1000) | 0);
+            display = (length % 60) | 0;
+            timed.textContent = display;
+
+            if (displayTimer.textContent == '0') {
+                $('.game-start').hide();
+                return 0;
+            } else {
+                if (display==0 && load) {
+                    clearInterval(interval);
+                    keyActive = true;
+                    $('.blackout').hide();
+                    $('.game-start').hide();
+                } else if (display==0 && !load) {
+                    clearInterval(interval);
+                    $('.blackout').hide();
+                    $('.game-start').hide();
+                    startGame();
+                }
+        
+                if (length <= 0) {
+                    initial = Date.now() + 1000;
+                }
+            }
+        };
+    
+        initalTime();
+        var interval = setInterval(initalTime, 1000);
+        streak.innerHTML = '0';
+    
+        return 0;
+    }
 }
 
-function init() {
+function startGame() {
     var sequence = [];
     var img = document.getElementsByName('canvas');
-    var keyActive = true
     var score = 0;
     var streak = 0;
     var counter = 0;
     var add = [];
-    var count = 60;
-    var timer = document.querySelector('#timer');
+    var displayTimer = document.getElementById('timer');
     var visibleScore = document.getElementById('score');
     var visibleMultiplyer = document.getElementById('multiplier');
     left = ['../../source/images/cake.png','../../source/images/strawberry.png','../../source/images/kitty.png'];
     right = ['../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/timebomb.png'];
 
     //PUT THE TIMER BACK
-    // startTimer(count, timer);
+    var start = Date.now(),
+        diff;
+    function timer() {
+        diff = 60 - (((Date.now() - start) / 1000) | 0);
+        displayTimer.textContent = diff;
+        
+        if (diff== 0) {
+            clearInterval(intervalId);
+            $('.blackout').show();
+            alert(score);
+        }
+
+        if (diff <= 0) {
+            start = Date.now() + 1000;
+        }
+    };
+    timer();
+    var intervalId = setInterval(timer, 1000);
 
     sequence = initialImages(sequence, img);
     counter = updateImages(sequence, img, counter, streak);
 
     document.onkeydown = function (e) {
-        if (keyActive) {
+        if (!$('.blackout').is(':visible')) {
             switch (e.key) {
                 case 'ArrowLeft':
                     if (left.includes(sequence[0])) {
@@ -178,7 +198,7 @@ function init() {
                         visibleScore.innerHTML = score;
                         visibleMultiplyer.innerHTML = streak;
                     } else {
-                        opps(visibleMultiplyer);
+                        streak = threeSecondLockout(true, visibleMultiplyer);
                     }
                     break;
                 case 'ArrowRight':
@@ -190,12 +210,26 @@ function init() {
                         visibleScore.innerHTML = score;
                         visibleMultiplyer.innerHTML = streak;
                     } else {
-                        opps(visibleMultiplyer);
+                        streak = threeSecondLockout(true, visibleMultiplyer);
                     }
                     break;
             }
         }
     };
+}
+
+function init() {
+    $('#overlay').show();
+    $('.popup-load').show();
+
+    $('.start').click(function() {
+        $('.popup-load').hide();
+        $('#overlay').appendTo(document.body).remove();
+        threeSecondLockout(false, 0);
+
+        return false;
+      });
+    
 }
 
 init()

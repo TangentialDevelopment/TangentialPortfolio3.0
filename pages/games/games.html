@@ -19,8 +19,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
+    <div id="overlay"></div>
     <div class="blackout"></div>
-    <div><span id="timer"></span></div>
+    <div class="popup-load">
+      <div class="popup-content">
+        <a href='' class='btn btn-primary start'>Start Game</a>
+      </div>
+    </div>
+    <div class="game-start">
+      <div class="timer-box">
+        <span id="inital-timer"></span>
+      </div>
+    </div>
+    <div><span id="timer">60</span></div>
     <div class="list">
       <img src="" name='canvas' alt="">
       <img src="" name='canvas' alt="">
