@@ -64,6 +64,33 @@ function cakify(order, img) {
     }
 }
 
+function distraction(streak) {
+    var field = document.getElementById('multi');
+    field.textContent = streak;
+
+    $('.distract').show();
+    $('.multiplyer').show();
+    
+    var initial = Date.now(),
+        length;
+    function initalTime() {
+        length = 2 - (((Date.now() - initial) / 1000) | 0);        
+
+        if (length==0) {
+            clearInterval(interval);
+            $('.distract').hide();
+            $('.multiplyer').hide();
+        }
+
+        if (length <= 0) {
+            initial = Date.now() + 1000;
+        }
+    };
+
+    initalTime();
+    var interval = setInterval(initalTime, 1000);
+}
+
 function addScore(score, streak) {
     if (streak >= 400) {
         streak += 5;
@@ -74,21 +101,37 @@ function addScore(score, streak) {
     } else if (streak >= 200) {
         streak += 5;
         score += 300;
-    } else if (streak >= 155) {
+    } else if (streak > 155) {
         streak += 5;
         score += 200;
+    } else if (streak == 155) {
+        streak += 5;
+        score += 200;
+        distraction(5);
     } else if (streak >= 100) {
         streak += 4;
         score += 100;
-    } else if (streak >= 95) {
+    } else if (streak > 95) {
         streak += 4;
         score += 100;
-    } else if (streak >= 50) {
+    } else if (streak == 95) {
+        streak += 4;
+        score += 100;
+        distraction(4);
+    } else if (streak > 50) {
         streak += 3;
         score += 100;
-    } else if (streak >= 20) {
+    } else if (streak == 50) {
+        streak += 3;
+        score += 100;
+        distraction(3);
+    } else if (streak > 20) {
         streak += 2;
         score += 100;
+    } else if (streak == 20) {
+        streak += 2;
+        score += 100;
+        distraction(2);
     } else {
         streak += 1;
         score += 100;
@@ -156,24 +199,24 @@ function startGame() {
     right = ['../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/timebomb.png'];
 
     //PUT THE TIMER BACK
-    var start = Date.now(),
-        diff;
-    function timer() {
-        diff = 60 - (((Date.now() - start) / 1000) | 0);
-        displayTimer.textContent = diff;
+    // var start = Date.now(),
+    //     diff;
+    // function timer() {
+    //     diff = 60 - (((Date.now() - start) / 1000) | 0);
+    //     displayTimer.textContent = diff;
         
-        if (diff== 0) {
-            clearInterval(intervalId);
-            $('.blackout').show();
-            alert(score);
-        }
+    //     if (diff== 0) {
+    //         clearInterval(intervalId);
+    //         $('.blackout').show();
+    //         alert(score);
+    //     }
 
-        if (diff <= 0) {
-            start = Date.now() + 1000;
-        }
-    };
-    timer();
-    var intervalId = setInterval(timer, 1000);
+    //     if (diff <= 0) {
+    //         start = Date.now() + 1000;
+    //     }
+    // };
+    // timer();
+    // var intervalId = setInterval(timer, 1000);
 
     sequence = initialImages(sequence, img);
     counter = updateImages(sequence, img, counter, streak);
@@ -221,6 +264,7 @@ function startGame() {
 function init() {
     $('#overlay').show();
     $('.popup-load').show();
+    $('.distract').hide();
 
     $('.start').click(function() {
         $('.popup-load').hide();

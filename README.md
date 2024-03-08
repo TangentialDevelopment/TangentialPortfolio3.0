@@ -23,3 +23,4 @@
 03-05 added streaks
 03-06 added distraction elements
 03-07 added initial load and refactored
+03-08 added streak distractions
