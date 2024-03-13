@@ -195,6 +195,9 @@ function startGame() {
     var displayTimer = document.getElementById('timer');
     var visibleScore = document.getElementById('score');
     var visibleMultiplyer = document.getElementById('multiplier');
+    var animateLeft = document.getElementById('animate-left');
+    var animateRight = document.getElementById('animate-right');
+    var process = null;
     left = ['../../source/images/cake.png','../../source/images/strawberry.png','../../source/images/kitty.png'];
     right = ['../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/timebomb.png'];
 
@@ -223,16 +226,27 @@ function startGame() {
 
     document.onkeydown = function (e) {
         if (!$('.blackout').is(':visible')) {
+            process = sequence[0]
             switch (e.key) {
                 case 'ArrowLeft':
                     if (left.includes(sequence[0])) {
+                        animateLeft.src=process;
+                        $('#animate-left').show();
+                        setTimeout(() => {
+                            $('#animate-left').hide();
+                        }, 400);
                         counter = updateImages(sequence, img, counter, streak);
                         add = addScore(score, streak);
                         score = add[0];
                         streak = add[1];
                         visibleScore.innerHTML = score;
                         visibleMultiplyer.innerHTML = streak;
-                    } else if (sequence[0] == '../../source/images/scake.png'){
+                    } else if (sequence[0] == '../../source/images/scake.png') {
+                        animateLeft.src = process;
+                        $('#animate-left').show();
+                        setTimeout(() => {
+                            $('#animate-left').hide();
+                        }, 400);
                         counter = updateImages(sequence, img, counter, streak);
                         cakify(sequence, img);
                         add = addScore(score, streak);
@@ -246,6 +260,12 @@ function startGame() {
                     break;
                 case 'ArrowRight':
                     if (right.includes(sequence[0])) {
+                        animateRight.src = process;
+                        $('#animate-right').show();
+                        setTimeout(() => {
+                            $('#animate-right').hide();
+                        }, 400);
+                        console.log(sequence[0]);
                         counter = updateImages(sequence, img, counter, streak);
                         add = addScore(score, streak);
                         score = add[0];
@@ -262,18 +282,18 @@ function startGame() {
 }
 
 function init() {
-    $('#overlay').show();
-    $('.popup-load').show();
+    // $('#overlay').show();
+    // $('.popup-load').show();
     $('.distract').hide();
 
-    $('.start').click(function() {
-        $('.popup-load').hide();
-        $('#overlay').appendTo(document.body).remove();
-        threeSecondLockout(false, 0);
+    // $('.start').click(function() {
+    //     $('.popup-load').hide();
+    //     $('#overlay').appendTo(document.body).remove();
+    //     threeSecondLockout(false, 0);
 
-        return false;
-      });
-    
+    //     return false;
+    //   });
+    startGame();
 }
 
 init()
