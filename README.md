@@ -27,3 +27,4 @@
 03-11 image editing
 03-12 more image editing
 03-13 begin animation work
+03-14 added first animations

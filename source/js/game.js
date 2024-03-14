@@ -198,8 +198,43 @@ function startGame() {
     var animateLeft = document.getElementById('animate-left');
     var animateRight = document.getElementById('animate-right');
     var process = null;
+    var rPosLeft = animateRight.getBoundingClientRect().left;
+    var rPosTop = animateRight.getBoundingClientRect().top;
+    var rPosTemp = 0
+    var lPosLeft = animateLeft.getBoundingClientRect().right;
+    var lPosTop = animateLeft.getBoundingClientRect().top;
+    var lPosTemp = 0
+    var id = null;
     left = ['../../source/images/cake.png','../../source/images/strawberry.png','../../source/images/kitty.png'];
     right = ['../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/timebomb.png'];
+
+    function rframe() {
+        if (rPosTemp == 100) {
+            rPosTemp = 0
+            animateRight.style.top = rPosTop + 'px';
+            animateRight.style.left = rPosLeft + 'px';
+            clearInterval(id);
+            $('#animate-right').hide();
+        } else {
+            rPosTemp += 5;
+            animateRight.style.top = rPosTop + rPosTemp + 'px'; 
+            animateRight.style.left = rPosLeft + rPosTemp + 'px';
+        }
+    }
+
+    function lframe() {
+        if (lPosTemp == 100) {
+            lPosTemp = 0
+            animateLeft.style.top = lPosTop + 'px';
+            animateLeft.style.right = lPosLeft + 'px';
+            clearInterval(id);
+            $('#animate-left').hide();
+        } else {
+            lPosTemp += 5;
+            animateLeft.style.top = lPosTop + lPosTemp + 'px'; 
+            animateLeft.style.right = lPosLeft + lPosTemp + 'px';
+        }
+    }
 
     //PUT THE TIMER BACK
     // var start = Date.now(),
@@ -227,14 +262,15 @@ function startGame() {
     document.onkeydown = function (e) {
         if (!$('.blackout').is(':visible')) {
             process = sequence[0]
+
             switch (e.key) {
                 case 'ArrowLeft':
                     if (left.includes(sequence[0])) {
                         animateLeft.src=process;
                         $('#animate-left').show();
-                        setTimeout(() => {
-                            $('#animate-left').hide();
-                        }, 400);
+                        clearInterval(id);
+                        id = setInterval(lframe, 1);
+
                         counter = updateImages(sequence, img, counter, streak);
                         add = addScore(score, streak);
                         score = add[0];
@@ -244,9 +280,9 @@ function startGame() {
                     } else if (sequence[0] == '../../source/images/scake.png') {
                         animateLeft.src = process;
                         $('#animate-left').show();
-                        setTimeout(() => {
-                            $('#animate-left').hide();
-                        }, 400);
+                        clearInterval(id);
+                        id = setInterval(lframe, 1);
+
                         counter = updateImages(sequence, img, counter, streak);
                         cakify(sequence, img);
                         add = addScore(score, streak);
@@ -262,10 +298,9 @@ function startGame() {
                     if (right.includes(sequence[0])) {
                         animateRight.src = process;
                         $('#animate-right').show();
-                        setTimeout(() => {
-                            $('#animate-right').hide();
-                        }, 400);
-                        console.log(sequence[0]);
+                        clearInterval(id);
+                        id = setInterval(rframe, 1);
+                        
                         counter = updateImages(sequence, img, counter, streak);
                         add = addScore(score, streak);
                         score = add[0];
