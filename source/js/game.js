@@ -217,8 +217,8 @@ function startGame() {
             $('#animate-right').hide();
         } else {
             rPosTemp += 5;
-            animateRight.style.top = rPosTop + rPosTemp + 'px'; 
-            animateRight.style.left = rPosLeft + rPosTemp + 'px';
+            animateRight.style.top = rPosTop + Math.sqrt(150*rPosTemp) + 'px'; 
+            animateRight.style.left = rPosLeft + 2*rPosTemp + 'px';
         }
     }
 
@@ -231,8 +231,8 @@ function startGame() {
             $('#animate-left').hide();
         } else {
             lPosTemp += 5;
-            animateLeft.style.top = lPosTop + lPosTemp + 'px'; 
-            animateLeft.style.right = lPosLeft + lPosTemp + 'px';
+            animateLeft.style.top = lPosTop + Math.sqrt(150*lPosTemp) + 'px'; 
+            animateLeft.style.right = lPosLeft + 2*lPosTemp + 'px';
         }
     }
 

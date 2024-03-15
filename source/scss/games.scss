@@ -11,8 +11,12 @@
     }
 }
 
-.paddles {
-    max-width: 150px;
+.paddle {
+    margin-top:-200px;
+
+    .paddles {
+        max-width: 150px;
+    }
 }
 
 .blackout {
