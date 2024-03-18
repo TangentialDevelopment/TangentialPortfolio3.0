@@ -29,3 +29,4 @@
 03-13 begin animation work
 03-14 added first animations
 03-15 one iteration of animations
+03-18 visual adjustments
