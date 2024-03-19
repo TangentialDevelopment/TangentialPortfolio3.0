@@ -328,7 +328,7 @@ function init() {
 
         return false;
       });
-    startGame();
+    // startGame();
 }
 
 init()

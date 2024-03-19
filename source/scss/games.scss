@@ -1,5 +1,10 @@
 @import "_variables";
 
+.popup-content {
+    color: $color3;
+    max-width: 500px;
+}
+
 .list {
     display: flex;
     flex-direction: column-reverse;
