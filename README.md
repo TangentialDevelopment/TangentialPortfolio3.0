@@ -31,3 +31,4 @@
 03-15 one iteration of animations
 03-18 turned everything on
 03-19 Initial paddle image animation
+03-20 rough paddle animation

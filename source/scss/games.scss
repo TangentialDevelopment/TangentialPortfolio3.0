@@ -22,6 +22,16 @@
     .paddles {
         max-width: 150px;
     }
+
+    #leftAnimate {
+        max-width: 150px;
+        display: none;
+    }
+
+    #rightAnimate {
+        max-width: 150px;
+        display: none;
+    }
 }
 
 .blackout {

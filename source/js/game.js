@@ -215,6 +215,8 @@ function startGame() {
             animateRight.style.left = rPosLeft + 'px';
             clearInterval(id);
             $('#animate-right').hide();
+            $('#rightAnimate').hide();
+            $('#left').show();
         } else {
             rPosTemp += 5;
             animateRight.style.top = rPosTop + Math.sqrt(150*rPosTemp) + 'px'; 
@@ -229,6 +231,8 @@ function startGame() {
             animateLeft.style.right = lPosLeft + 'px';
             clearInterval(id);
             $('#animate-left').hide();
+            $('#leftAnimate').hide();
+            $('#right').show();
         } else {
             lPosTemp += 5;
             animateLeft.style.top = lPosTop + Math.sqrt(150*lPosTemp) + 'px'; 
@@ -266,6 +270,8 @@ function startGame() {
             switch (e.key) {
                 case 'ArrowLeft':
                     if (left.includes(sequence[0])) {
+                        $('#right').hide();
+                        $('#leftAnimate').show();
                         animateLeft.src=process;
                         $('#animate-left').show();
                         clearInterval(id);
@@ -278,6 +284,8 @@ function startGame() {
                         visibleScore.innerHTML = score;
                         visibleMultiplyer.innerHTML = streak;
                     } else if (sequence[0] == '../../source/images/scake.png') {
+                        $('#right').hide();
+                        $('#leftAnimate').show();
                         animateLeft.src = process;
                         $('#animate-left').show();
                         clearInterval(id);
@@ -296,6 +304,8 @@ function startGame() {
                     break;
                 case 'ArrowRight':
                     if (right.includes(sequence[0])) {
+                        $('#left').hide();
+                        $('#rightAnimate').show();
                         animateRight.src = process;
                         $('#animate-right').show();
                         clearInterval(id);
