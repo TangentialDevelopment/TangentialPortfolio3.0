@@ -32,3 +32,4 @@
 03-18 turned everything on
 03-19 Initial paddle image animation
 03-20 rough paddle animation
+03-21 sick day, adjust colors on the paddles
