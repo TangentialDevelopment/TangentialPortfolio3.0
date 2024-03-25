@@ -83,23 +83,30 @@ p {
 
 .ul-tree {
     padding: 0;
-    max-width:100%;
+    max-width: 100%;
     white-space: nowrap;
+    // margin-right: 170px;
 
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     h4 {
         text-align: center;
     }
+
     p {
         margin-bottom: 0;
     }
+
     li {
         display: inline-block;
-        margin: 0 5px 0 5px;
+        margin: 10px 5px 10px 5px;
     }
+}
+
+.cbsurety {
+    margin-left: -60px;
 }
 
 body {
@@ -115,6 +122,14 @@ body {
 .skills {
     background-color: $color10;
     max-width: 100%;
+
+    ol {
+        padding: 0 15px 0 15px;
+    }
+    
+    li {
+        background-color: $color5;
+    }
 }
 
 .experience {
@@ -154,4 +169,11 @@ body {
 
 .sbracket {
     color: #964dab;
+}
+
+.identity {
+    margin: 0 auto;
+    width: 60%;
+    padding: 10px;
+    background-color: $bgcolor;
 }

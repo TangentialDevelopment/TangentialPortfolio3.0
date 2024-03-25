@@ -34,3 +34,4 @@
 03-20 rough paddle animation
 03-21 sick day, adjust colors on the paddles
 03-22 sick day pt 2
+03-25 miscellaneous changes

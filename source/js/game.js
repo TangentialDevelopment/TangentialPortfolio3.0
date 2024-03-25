@@ -107,7 +107,7 @@ function addScore(score, streak) {
     } else if (streak == 155) {
         streak += 5;
         score += 200;
-        distraction(5);
+        // distraction(5);
     } else if (streak >= 100) {
         streak += 4;
         score += 100;
@@ -117,14 +117,14 @@ function addScore(score, streak) {
     } else if (streak == 95) {
         streak += 4;
         score += 100;
-        distraction(4);
+        // distraction(4);
     } else if (streak > 50) {
         streak += 3;
         score += 100;
     } else if (streak == 50) {
         streak += 3;
         score += 100;
-        distraction(3);
+        // distraction(3);
     } else if (streak > 20) {
         streak += 2;
         score += 100;
