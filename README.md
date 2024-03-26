@@ -35,3 +35,4 @@
 03-21 sick day, adjust colors on the paddles
 03-22 sick day pt 2
 03-25 miscellaneous changes
+03-26 photo adjustments

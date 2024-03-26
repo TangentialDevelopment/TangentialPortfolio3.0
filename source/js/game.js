@@ -241,24 +241,24 @@ function startGame() {
     }
 
     //PUT THE TIMER BACK
-    var start = Date.now(),
-        diff;
-    function timer() {
-        diff = 60 - (((Date.now() - start) / 1000) | 0);
-        displayTimer.textContent = diff;
+    // var start = Date.now(),
+    //     diff;
+    // function timer() {
+    //     diff = 60 - (((Date.now() - start) / 1000) | 0);
+    //     displayTimer.textContent = diff;
         
-        if (diff== 0) {
-            clearInterval(intervalId);
-            $('.blackout').show();
-            alert(score);
-        }
+    //     if (diff== 0) {
+    //         clearInterval(intervalId);
+    //         $('.blackout').show();
+    //         alert(score);
+    //     }
 
-        if (diff <= 0) {
-            start = Date.now() + 1000;
-        }
-    };
-    timer();
-    var intervalId = setInterval(timer, 1000);
+    //     if (diff <= 0) {
+    //         start = Date.now() + 1000;
+    //     }
+    // };
+    // timer();
+    // var intervalId = setInterval(timer, 1000);
 
     sequence = initialImages(sequence, img);
     counter = updateImages(sequence, img, counter, streak);
@@ -327,18 +327,19 @@ function startGame() {
 }
 
 function init() {
-    $('#overlay').show();
-    $('.popup-load').show();
-    $('.distract').hide();
+    // $('#overlay').show();
+    // $('.popup-load').show();
+    // $('.distract').hide();
 
-    $('.start').click(function() {
-        $('.popup-load').hide();
-        $('#overlay').appendTo(document.body).remove();
-        threeSecondLockout(false, 0);
+    // $('.start').click(function() {
+    //     $('.popup-load').hide();
+    //     $('#overlay').appendTo(document.body).remove();
+    //     threeSecondLockout(false, 0);
 
-        return false;
-      });
-    // startGame();
+    //     return false;
+    //   });
+
+    startGame();
 }
 
 init()
