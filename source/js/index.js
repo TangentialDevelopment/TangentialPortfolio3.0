@@ -36,16 +36,16 @@ function init() {
     });
 
     //the overlay
-    $(function() {
-      var overlay = $('#overlay');
-      overlay.show();
-      $('.popup-load').show();
-      $('.close').click(function() {
-        $('.popup-load').hide();
-        overlay.appendTo(document.body).remove();
-        return false;
-      });
-    });
+    // $(function() {
+    //   var overlay = $('#overlay');
+    //   overlay.show();
+    //   $('.popup-load').show();
+    //   $('.close').click(function() {
+    //     $('.popup-load').hide();
+    //     overlay.appendTo(document.body).remove();
+    //     return false;
+    //   });
+    // });
 }
 
 init();
