@@ -37,3 +37,4 @@
 03-25 miscellaneous changes
 03-26 photo adjustments
 03-27 start of the art
+03-28 inital art board layout
