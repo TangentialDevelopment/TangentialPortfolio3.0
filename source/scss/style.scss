@@ -73,6 +73,8 @@ body {
     background-image: url("../../source/images/dcr6Lezzi-95590192.png");
     background-repeat: no-repeat;
     background-size: cover;
+
+    font-size: 11px;
 }
 
 .nav {
@@ -135,6 +137,7 @@ body {
     // width: 1800px;
     // height: 400px;
     // border-radius: 50%;
+    padding-top: 100px;
     width: 90%;
 
     h2 {
@@ -150,7 +153,7 @@ body {
     // }
 
     .ul-tree {
-        padding-top: 60px;
+        // padding-top: 60px;
         width: 80%;
         margin: 0 auto;
     }
@@ -195,9 +198,21 @@ body {
     color: #964dab;
 }
 
+.easel {
+    height: 400px;
+    width: auto;
+    background-image: url('../../source/images/easels.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding-top: 200px;
+    padding-left: 55px;
+}
+
 .identity {
     margin: 0 auto;
     width: 60%;
     padding: 10px;
     background-color: $bgcolor;
+    font-size: 12px;
 }

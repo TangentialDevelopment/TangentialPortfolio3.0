@@ -38,3 +38,4 @@
 03-26 photo adjustments
 03-27 start of the art
 03-28 inital art board layout
+03-29 initial easel
