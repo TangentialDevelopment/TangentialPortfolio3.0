@@ -102,7 +102,8 @@ p {
 
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    // justify-content: space-between;
+    flex-direction: column;
 
     h4 {
         text-align: center;
@@ -140,10 +141,12 @@ body {
     // padding-top: 100px;
     // margin-right: 100px;
     width: 90%;
+    padding-left: 250px;
+    padding-right: 200px;
 
-    h2 {
-        padding-top: 70px;
-    }
+    // h2 {
+    //     padding-top: 70px;
+    // }
 
     ol {
         padding: 0 15px 0 15px;
@@ -201,14 +204,15 @@ body {
 }
 
 .easel {
-    height: 400px;
-    width: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    // border: 3px solid $bgcolor;
     background-image: url('../../source/images/easels.png');
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-
-    padding-top: 200px;
-    padding-left: 55px;
+    object-fit: contain;
+    // background-size: cover;
+    // padding: 800px;
 }
 
 .identity {

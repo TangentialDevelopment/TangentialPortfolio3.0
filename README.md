@@ -40,3 +40,4 @@
 03-28 inital art board layout
 03-29 initial easel
 04-01 adjusted the palette
+04-02 easel adjustments
