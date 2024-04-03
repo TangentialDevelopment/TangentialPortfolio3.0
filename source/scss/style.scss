@@ -119,10 +119,6 @@ p {
     }
 }
 
-.cbsurety {
-    margin-left: -60px;
-}
-
 body {
     background-color: $color1;
 }
@@ -138,7 +134,7 @@ body {
     // width: 1800px;
     // height: 400px;
     // border-radius: 50%;
-    // padding-top: 100px;
+    padding-top: 75px;
     // margin-right: 100px;
     width: 90%;
     padding-left: 250px;
@@ -158,25 +154,43 @@ body {
     // }
 
     .ul-tree {
-        padding-top: 20px;
-        width: 80%;
+        // padding-top: 20px;
+        // width: 80%;
         margin: 0 auto;
     }
 }
 
 .experience {
-    background-color: $color9;
-}
+    // background-color: $color9;
+    padding-top: 75px;
+    font-size: 14px;
+    line-height: 34%;
 
-.experience-tree {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: $color5;
+    .experience-tree {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        // background-color: $color5;
+    }
+    
+    h4 {
+        font-size: 16px;
+        line-height: 50%;
+    }
+
+    .cbsurety {
+        font-size: 18px;
+    }
 }
 
 .education {
-    background-color: $color8;
+    // background-color: $color8;
+    padding-top: 135px;
+    font-size: 12px;
+
+    h2 {
+        font-size: 24px;
+    }
 }
 
 .var {
@@ -204,8 +218,9 @@ body {
 }
 
 .easel {
+    height: 600px;
     margin: 0 auto;
-    margin-top: 100px;
+    // margin-top: 100px;
     // border: 3px solid $bgcolor;
     background-image: url('../../source/images/easels.png');
     background-position: center;
