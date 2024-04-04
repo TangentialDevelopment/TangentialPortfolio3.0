@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+.gallery {
+    --img-size: calc(100px - .25rem / 2);
+    display: grid;
+    gap: .25rem;
+    grid-template-columns: repeat(6, var(--img-size));
+    grid-template-rows: repeat(3, var(--img-size));
+
+    img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        grid-column: span 2;
+        clip-path: path('M 80 20 C 100 0 100 0 120 20 C 140 40 160 60 180 80 C 200 100 200 100 180 120 C 160 140 140 160 120 180 C 100 200 100 200 80 180 C 60 160 40 140 20 120 C 0 100 0 100 20 80 Z');
+        transition: 
+            filter 500ms,
+            clip-path 500ms;
+
+        &:nth-of-type(4) {
+            grid-column: 2 / span 2;
+        }
+
+        &:hover {
+            z-index: 100;
+            clip-path: path('M 0 0 C 100 0 100 0 200 0 C 200 50 200 50 200 80 C 200 100 200 100 200 120 C 200 150 200 150 200 200 C 100 200 100 200 0 200 C 0 150 0 150 0 120 C 0 100 0 100 0 80 Z');
+        }
+
+        &:not(:hover) {
+            animation: zIndexHack 500ms;
+        }
+    }
+}
+
+.gallery:hover > img {
+    filter: brightness(.5) saturate(.5);
+}
+
+.gallery > img:hover {
+    filter: brightness(1) saturate(1);
+}
+
+@keyframes zIndexHack {
+    0%, 100% {
+        z-index: 10;
+    }
+}

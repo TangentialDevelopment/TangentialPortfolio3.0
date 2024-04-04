@@ -42,3 +42,4 @@
 04-01 adjusted the palette
 04-02 easel adjustments
 04-03 optimized easel
+04-04 added a test for clip paths
