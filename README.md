@@ -44,3 +44,4 @@
 04-03 optimized easel
 04-04 added a test for clip paths
 04-05 aligned items with grid
+04-08 added hover for easel

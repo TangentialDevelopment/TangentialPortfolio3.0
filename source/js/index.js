@@ -35,6 +35,14 @@ function init() {
       $(text).removeClass('hide');
     });
 
+    $('#webdev').hover(
+      function() {
+        $('.row-1').addClass('clicked');
+      }, function() {
+        $('.row-1').removeClass('clicked');
+      }
+    )
+
     //the overlay
     // $(function() {
     //   var overlay = $('#overlay');
