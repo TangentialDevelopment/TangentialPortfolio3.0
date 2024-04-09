@@ -29,8 +29,12 @@ function init() {
     $('.selector').on('click', function click(){
       $('.current').removeClass("current");
       $('.container-fluid').addClass('hide');
+      $('.skills-row').hide();
   
       $(this).addClass('current');
+      if (this.innerHTML == 'Skills') {
+        $('.skills-row').show();
+      }
       text = section +this.innerHTML.toLowerCase();
       $(text).removeClass('hide');
     });
@@ -38,8 +42,18 @@ function init() {
     $('#webdev').hover(
       function() {
         $('.row-1').addClass('clicked');
+        $('.row-2').addClass('clicked');
       }, function() {
         $('.row-1').removeClass('clicked');
+        $('.row-2').removeClass('clicked');
+      }
+    )
+
+    $('#ux').hover(
+      function() {
+        $('.row-3').addClass('clicked');
+      }, function() {
+        $('.row-3').removeClass('clicked');
       }
     )
 

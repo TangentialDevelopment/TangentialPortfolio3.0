@@ -119,7 +119,7 @@ p {
         width: 27%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
         padding-top: 30px;
         font-size: 22px;
     
@@ -190,11 +190,11 @@ p {
             grid-template-rows: repeat(4, 50px);
 
             .clicked {
-                font-size: 30px;
+                font-size: 23px;
             }
 
             .row-1 {
-                margin-left: -50px;
+                margin-left: -60px;
                 display: grid;
                 place-items: center;
                 grid-template-columns: repeat(7, 70px);
@@ -202,13 +202,15 @@ p {
             }
 
             .row-2 {
+                margin-left: -55px;
                 display: grid;
-                grid-template-columns: repeat(5, 80px);
+                grid-template-columns: repeat(5, 105px);
             }
 
             .row-3 {
+                margin-left: -35px;
                 display: grid;
-                grid-template-columns: repeat(5, 95px);
+                grid-template-columns: repeat(5, 105px);
             }
 
             .row-4 {
