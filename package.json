@@ -4,7 +4,9 @@
   "description": "01-30: initialization",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch source/scss/:compiled/css/ --style compressed"
+    "sass": "sass --watch source/scss/:compiled/css/ --style compressed",
+    "prod": "echo \"Add your build command here\"",
+    "deploy": "git push origin `git subtree split --prefix dist master`:gh-pages --force"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/TangentialDevelopment/TangentialPortfolio3.0/issues"
   },
-  "homepage": "https://github.com/TangentialDevelopment/TangentialPortfolio3.0#readme"
+  "homepage": "https://github.com/TangentialDevelopment/TangentialPortfolio3.0#readme",
+  "devDependencies": {
+    "husky": "^9.0.11"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prod"
+    }
+  },
+  "dependencies": {
+    "yarn": "^1.22.22"
+  }
 }
