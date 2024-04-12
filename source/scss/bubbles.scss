@@ -1,0 +1,56 @@
+html {
+    font-family: system-ui, sans-serif;
+    font-size: 1.5rem;
+    color: hsl(220 40% 35%);
+}
+
+body {
+    padding: 2rem;
+    background-color: hsl(220 20% 95%);
+}
+
+.avatars {
+    --avatar-count: 10;
+    --avatar-size: 100px;
+    --transition-duration: 500ms;
+    --column-size: calc(var(--avatar-size) / 2);
+
+    display: grid;
+    grid-template-columns: repeat(var(--avatar-count), var(--column-size));
+    transition: grid-template-columns var(--transition-duration);
+    transition-delay: var(--transition-duration);
+
+    max-width: 80vw;
+    padding-block: 3rem;
+    overflow-x: auto;
+}
+
+.avatars:hover,
+.avatars:focus-within {
+    --column-size: calc(var(--avatar-size) * 1.5);
+    transition-delay: 0ms;
+}
+
+.avatar {
+    width: var(--avatar-size);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 100vw;
+    border: 5px solid white;
+    box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
+
+    transition: scale var(--transition-duration);
+}
+
+.avatar:hover,
+.avatar:focus {
+    scale: 2;
+    z-index: 2;
+}
+
+@supports selector(:has( + *)) {
+    .avatar:hover + .avatar,
+    .avatar:has( + .avatar:hover) {
+        scale: 1.5;
+    }
+}
