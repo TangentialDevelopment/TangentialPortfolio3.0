@@ -1,4 +1,15 @@
-function init() {  
+function init() {
+  $(window).ready(function() {
+    // $('.popup-load').show();
+    // $('#overlay').show();
+
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.scrollTo(0,0);
+  });
+
   section = '.'
     $('.experience').addClass('hide');
     $('.education').addClass('hide');
@@ -36,18 +47,11 @@ function init() {
 
     //the overlay
     $(function() {
-      var overlay = $('#overlay');
-      overlay.show();
-      $('.popup-load').show();
       $('.close').click(function() {
         $('.popup-load').hide();
-        overlay.appendTo(document.body).remove();
+        $('#overlay').hide();
         return false;
       });
-    });
-
-    $(window).on('beforeunload', function(){
-      $(window).scrollTop(0);
     });
 }
 

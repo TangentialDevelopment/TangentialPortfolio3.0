@@ -190,6 +190,15 @@ p {
             place-items: center;
             grid-template-rows: repeat(4, 50px);
 
+            // p {
+            //     width: 100%;
+            //     background-color: $color8;
+            // }
+
+            // p:nth-child(2n) {
+            //     background-color: $color4;
+            // }
+
             .clicked {
                 font-size: 23px;
             }
@@ -209,7 +218,7 @@ p {
             }
 
             .row-3 {
-                margin-left: -35px;
+                margin-left: -50px;
                 display: grid;
                 grid-template-columns: repeat(5, 105px);
             }

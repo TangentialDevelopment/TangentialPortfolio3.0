@@ -50,3 +50,4 @@
 04-11 github deployment
 04-12 bubble zoom effect
 04-15 hybridized the bubble and test
+04-16 fixed scroll to top
