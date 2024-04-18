@@ -28,18 +28,18 @@ img {
         transition: 
             filter 500ms,
             clip-path 500ms,
-            scale var(--transition-duration);;
+            scale var(--transition-duration);
 
-        :nth-of-type(4) {
+        &:nth-of-type(4) {
             grid-column: 2 / span 2;
         }
 
-        :hover {
+        &:hover {
             z-index: 100;
             clip-path: path('M 0 0 C 100 0 100 0 200 0 C 200 50 200 50 200 80 C 200 100 200 100 200 120 C 200 150 200 150 200 200 C 100 200 100 200 0 200 C 0 150 0 150 0 120 C 0 100 0 100 0 80 Z');
         }
 
-        :not(:hover) {
+        &:not(:hover) {
             animation: zIndexHack 500ms;
         }
     }
