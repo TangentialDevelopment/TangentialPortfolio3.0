@@ -10,6 +10,11 @@ function init() {
     window.scrollTo(0,0);
   });
 
+  setInterval(function() {
+    var display = document.getElementById('cursor').style.display;
+    document.getElementById('cursor').style.display = (display == 'inline') ? 'none' : 'inline';
+  }, 450);
+
   section = '.'
     $('.experience').addClass('hide');
     $('.education').addClass('hide');
@@ -46,12 +51,21 @@ function init() {
     )
 
     //the overlay
-    $(function() {
-      $('.close').click(function() {
-        $('.popup-load').hide();
-        $('#overlay').hide();
-        return false;
-      });
+    // $(function() {
+    //   $('.close').click(function() {
+    //     $('.popup-load').hide();
+    //     $('#overlay').hide();
+    //     return false;
+    //   });
+    // });
+    document.onkeydown = function e(){
+      $('.popup-load').hide();
+      $('#overlay').hide();
+      return false;
+    }
+    document.addEventListener("click", (event) => {
+      $('.popup-load').hide();
+      $('#overlay').hide();
     });
 }
 

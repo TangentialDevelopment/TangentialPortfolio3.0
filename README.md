@@ -53,3 +53,4 @@
 04-16 fixed scroll to top
 04-17 highlights added
 04-18 fix for yesterday's changes
+04-19 set up on click compile

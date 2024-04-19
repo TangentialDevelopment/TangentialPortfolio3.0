@@ -72,6 +72,19 @@ p {
             margin-left: 50px;
         }
 
+        .command {
+            margin-top: 35px;
+            font: 1em monospace;
+            color: #ddd;
+            background-color: #222;
+            text-align: left;
+            line-height: 20px;
+
+            p {
+                margin: 0;
+            }
+        }
+
         .var {
             color: #4284d0;
         }
