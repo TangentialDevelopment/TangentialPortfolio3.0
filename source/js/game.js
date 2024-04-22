@@ -1,6 +1,6 @@
-var images = ['../../source/images/cake.png','../../source/images/bomb.png'];
-var simages = ['../../source/images/cake.png','../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/strawberry.png']
-var imagesp = ['../../source/images/cake.png','../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/strawberry.png','../../source/images/kitty.png','../../source/images/timebomb.png']
+var images = ['../../source/images/dessert/cake.png','../../source/images/dessert/bomb.png'];
+var simages = ['../../source/images/dessert/cake.png','../../source/images/dessert/bomb.png','../../source/images/dessert/claymore.png','../../source/images/dessert/strawberry.png']
+var imagesp = ['../../source/images/dessert/cake.png','../../source/images/dessert/bomb.png','../../source/images/dessert/claymore.png','../../source/images/dessert/strawberry.png','../../source/images/dessert/kitty.png','../../source/images/dessert/timebomb.png']
 
 function getImage(streak) {
     if (streak > 400) {
@@ -34,10 +34,10 @@ function initialImages(order, img) {
 function updateImages(order, img, counter, streak) {
     if (counter == 17) { //17
         order.shift();
-        order.push('../../source/images/scake.png');
+        order.push('../../source/images/dessert/scake.png');
     } else if ((counter+3) % 20 == 1 && counter>20) {
         order.shift();
-        order.push('../../source/images/scake.png');
+        order.push('../../source/images/dessert/scake.png');
     } else {
         temp = getImage(streak);
         order.shift();
@@ -205,8 +205,8 @@ function startGame() {
     var lPosTop = animateLeft.getBoundingClientRect().top;
     var lPosTemp = 0
     var id = null;
-    left = ['../../source/images/cake.png','../../source/images/strawberry.png','../../source/images/kitty.png'];
-    right = ['../../source/images/bomb.png','../../source/images/claymore.png','../../source/images/timebomb.png'];
+    left = ['../../source/images/dessert/cake.png','../../source/images/dessert/strawberry.png','../../source/images/dessert/kitty.png'];
+    right = ['../../source/images/dessert/bomb.png','../../source/images/dessert/claymore.png','../../source/images/dessert/timebomb.png'];
 
     function rframe() {
         if (rPosTemp == 100) {
@@ -283,7 +283,7 @@ function startGame() {
                         streak = add[1];
                         visibleScore.innerHTML = score;
                         visibleMultiplyer.innerHTML = streak;
-                    } else if (sequence[0] == '../../source/images/scake.png') {
+                    } else if (sequence[0] == '../../source/images/dessert/scake.png') {
                         $('#right').hide();
                         $('#leftAnimate').show();
                         animateLeft.src = process;
