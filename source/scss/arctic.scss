@@ -30,6 +30,10 @@ body {
         transition: scale var(--transition-duration);
     }
 
+    .selected {
+        border: 5px solid yellow;
+    }
+
     .card:hover,
     .card:focus {
         scale: 2;
