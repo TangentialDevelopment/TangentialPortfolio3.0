@@ -56,3 +56,4 @@
 04-19 set up on click compile
 04-22 started arctic game
 04-23 added play ability
+04-24 added end turn behavior
