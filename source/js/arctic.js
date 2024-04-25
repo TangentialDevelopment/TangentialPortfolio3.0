@@ -8,7 +8,13 @@ function draw(hand) {
     card.classList.add('card');
     hand.appendChild(card);
 
-    return handSize;
+    // if (deck == []) {
+    //     deck = discard.slice();
+    //     discard =[]
+    // }
+    
+    // discard.push(deck[0]);
+    // deck.shift();
 }
 
 function endTurn(hand) {
@@ -20,7 +26,10 @@ function endTurn(hand) {
 
 function init() {
     var hand = document.getElementById("hand")
-    var handSize = 0;
+    var player = {
+        deck: ['a','b','c','d','e','f','g','h','i','j'],
+        discard: []
+    }
 
     $(document).on('click','img',function(event) {
         var clicked = event.target;
@@ -32,7 +41,7 @@ function init() {
     });
     
     for (let i=0; i<5; i++) {
-        handSize = draw(hand);
+        draw(hand);
     }
 
     $('#play').click(function() {
@@ -49,8 +58,8 @@ function init() {
         for (let i=0; i<length; i++) {
             selected[0].remove();
         }
-        endTurn(hand)}
-    );
+        endTurn(hand);
+    });
 }
 
 init();
