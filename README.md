@@ -58,3 +58,4 @@
 04-23 added play ability  
 04-24 added end turn behavior  
 04-25 started on deck behavior  
+04-26 fixed deck reshuffling behavior  

@@ -1,4 +1,4 @@
-function draw(hand) {
+function draw(hand, struct) {
     var handSize = getComputedStyle(hand).getPropertyValue('--hand-size');
     handSize = Number(handSize) + 1;
     hand.style.setProperty('--hand-size', handSize);
@@ -8,20 +8,23 @@ function draw(hand) {
     card.classList.add('card');
     hand.appendChild(card);
 
-    // if (deck == []) {
-    //     deck = discard.slice();
-    //     discard =[]
-    // }
-    
-    // discard.push(deck[0]);
-    // deck.shift();
+    if (struct['deck'].length==0) {
+        struct['deck'] = struct['deck'].concat(struct['discard']);
+        struct['discard'] = [];
+    }
+    struct['discard'].push(struct['deck'][0]);
+    struct['deck'].shift();
+
+    return struct
 }
 
-function endTurn(hand) {
+function endTurn(hand, deck) {
     for (let i=0; i<5; i++) {
-        draw(hand);
+        deck = draw(hand, deck);
     }
     hand.style.setProperty('--hand-size', 5);
+
+    return deck
 }
 
 function init() {
@@ -41,7 +44,7 @@ function init() {
     });
     
     for (let i=0; i<5; i++) {
-        draw(hand);
+        player = draw(hand, player);
     }
 
     $('#play').click(function() {
@@ -58,7 +61,7 @@ function init() {
         for (let i=0; i<length; i++) {
             selected[0].remove();
         }
-        endTurn(hand);
+        player = endTurn(hand, player);
     });
 }
 
