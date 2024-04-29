@@ -1,3 +1,15 @@
+function shuffle(deck) {
+    var m = deck.length, t, i;
+    while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = deck[m];
+        deck[m] = deck[i];
+        deck[i] = t;
+    }
+  
+    return deck;
+}
+
 function draw(hand, struct) {
     var handSize = getComputedStyle(hand).getPropertyValue('--hand-size');
     handSize = Number(handSize) + 1;
@@ -11,6 +23,9 @@ function draw(hand, struct) {
     if (struct['deck'].length==0) {
         struct['deck'] = struct['deck'].concat(struct['discard']);
         struct['discard'] = [];
+
+        struct['deck'] = shuffle(struct['deck']);
+        console.log(struct);
     }
     struct['discard'].push(struct['deck'][0]);
     struct['deck'].shift();
@@ -22,6 +37,7 @@ function endTurn(hand, deck) {
     for (let i=0; i<5; i++) {
         deck = draw(hand, deck);
     }
+
     hand.style.setProperty('--hand-size', 5);
 
     return deck

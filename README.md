@@ -59,3 +59,4 @@
 04-24 added end turn behavior  
 04-25 started on deck behavior  
 04-26 fixed deck reshuffling behavior  
+04-29 added shuffler  
