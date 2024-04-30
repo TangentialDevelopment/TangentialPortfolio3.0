@@ -25,7 +25,6 @@ function draw(hand, struct) {
         struct['discard'] = [];
 
         struct['deck'] = shuffle(struct['deck']);
-        console.log(struct);
     }
     struct['discard'].push(struct['deck'][0]);
     struct['deck'].shift();
@@ -33,11 +32,15 @@ function draw(hand, struct) {
     return struct
 }
 
+function addDeck(deck, target) {
+    deck['discard'].push(target)
+    return deck;
+}
+
 function endTurn(hand, deck) {
     for (let i=0; i<5; i++) {
         deck = draw(hand, deck);
     }
-
     hand.style.setProperty('--hand-size', 5);
 
     return deck
@@ -78,6 +81,10 @@ function init() {
             selected[0].remove();
         }
         player = endTurn(hand, player);
+    });
+
+    $('#add').click(function() {
+        player = addDeck(player, 'z');
     });
 }
 

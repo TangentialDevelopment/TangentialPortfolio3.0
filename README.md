@@ -60,3 +60,4 @@
 04-25 started on deck behavior  
 04-26 fixed deck reshuffling behavior  
 04-29 added shuffler  
+04-30 added add card  
