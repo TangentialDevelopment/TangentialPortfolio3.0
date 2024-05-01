@@ -46,8 +46,32 @@ function endTurn(hand, deck) {
     return deck
 }
 
+function updateShop(shop, shopInven) {
+    shop.setAttribute('display','grid');
+    let size = Object.keys(shopInven).length;
+
+
+    for (i=0; i<size; i++) {
+        var item = document.createElement('img');
+        item.setAttribute("src", '');
+        item.classList.add('item');
+        shop.appendChild(item);
+    }
+}
+
 function init() {
-    var hand = document.getElementById("hand")
+    var hand = document.getElementById("hand");
+    var shop = document.getElementById('shop');
+    var shopInven = {
+        z: 5,
+        y: 5,
+        x: 5,
+        w: 5,
+        v: 5
+    }
+    
+    updateShop(shop, shopInven);
+
     var player = {
         deck: ['a','b','c','d','e','f','g','h','i','j'],
         discard: []
@@ -67,11 +91,7 @@ function init() {
     }
 
     $('#play').click(function() {
-        var selected = document.getElementsByClassName('selected');
-        var length = selected.length;
-        for (let i=0; i<length; i++) {
-            selected[0].remove();
-        }
+        document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());;
     });
 
     $('#end').click(function() {
