@@ -67,7 +67,10 @@ function init() {
         y: 5,
         x: 5,
         w: 5,
-        v: 5
+        v: 5,
+        u: 5,
+        t: 5,
+        s: 5
     }
     
     updateShop(shop, shopInven);

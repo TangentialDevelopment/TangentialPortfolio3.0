@@ -1,25 +1,75 @@
 body {
     padding: 6rem;
     background-color: hsl(220 20% 95%);
+    display: grid;
+    place-items: center;
+}
+
+img {
+    max-width: 100%;
 }
 
 #shop {
     --img-size: calc(100px - .25rem / 2);
-
+    --transition-duration: 500ms;
     display: grid;
-    gap: .25rem;
-    grid-template-columns: repeat(5, var(--img-size));
-    grid-template-rows: repeat(1, var(--img-size));
+    gap: .30rem;
+    grid-template-columns: repeat(6, var(--img-size));
+    grid-template-rows: repeat(3, var(--img-size));
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
 
-    padding-left: 100px;
+    img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
+        grid-column: span 2;
+        clip-path: path('M 80 20 C 100 0 100 0 120 20 C 140 40 160 60 180 80 C 200 100 200 100 180 120 C 160 140 140 160 120 180 C 100 200 100 200 80 180 C 60 160 40 140 20 120 C 0 100 0 100 20 80 Z');
+        transition: 
+            filter 500ms,
+            clip-path 500ms,
+            scale var(--transition-duration);
+
+        &:nth-of-type(4) {
+            grid-column: 2 / span 2;
+        }
+
+        &:hover {
+            z-index: 100;
+            clip-path: path('M 0 0 C 100 0 100 0 200 0 C 200 50 200 50 200 80 C 200 100 200 100 200 120 C 200 150 200 150 200 200 C 100 200 100 200 0 200 C 0 150 0 150 0 120 C 0 100 0 100 0 80 Z');
+        }
+
+        &:not(:hover) {
+            animation: zIndexHack 500ms;
+        }
+    }
+}
+
+#shop:hover > img {
+    filter: brightness(.5) saturate(.5);
+}
+
+#shop > img:hover {
+    filter: brightness(1) saturate(1);
+    scale: 2;
+}
+
+#shop > img:focus {
+    filter: brightness(1) saturate(1);
+    scale: 2;
 }
 
 .item {
-    height: 100px;
     background-color: bisque;
-    object-fit: cover;
-    box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
     border: 5px solid white;
+}
+
+@supports selector(:has( + *)) {
+    .item:hover + .item,
+    .item:has( + .item:hover) {
+        filter: brightness(.9) saturate(.9);
+    }
 }
 
 #hand {
@@ -38,6 +88,7 @@ body {
     height: 500px;
     padding-top: 100px;
     padding-left: 100px;
+    margin-left: -100px;
 }
 
 .card {
@@ -72,4 +123,14 @@ body {
 
 .selected {
     border: 5px solid yellow;
+}
+
+@keyframes zIndexHack {
+    0%, 100% {
+        z-index: 10;
+    }
+}
+
+.interaction {
+    place-items: center;
 }

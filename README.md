@@ -62,3 +62,4 @@
 04-29 added shuffler  
 04-30 added add card  
 05-01 added shop and refactored play  
+05-02 centered with shop  
