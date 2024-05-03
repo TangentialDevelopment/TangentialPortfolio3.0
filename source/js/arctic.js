@@ -47,13 +47,9 @@ function endTurn(hand, deck) {
 }
 
 function updateShop(shop, shopInven) {
-    shop.setAttribute('display','grid');
-    let size = Object.keys(shopInven).length;
-
-
-    for (i=0; i<size; i++) {
+    for (const [key, value] of Object.entries(shopInven)) {
         var item = document.createElement('img');
-        item.setAttribute("src", '');
+        item.setAttribute("src", key);
         item.classList.add('item');
         shop.appendChild(item);
     }
@@ -94,7 +90,7 @@ function init() {
     }
 
     $('#play').click(function() {
-        document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());;
+        document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());
     });
 
     $('#end').click(function() {
@@ -107,7 +103,14 @@ function init() {
     });
 
     $('#add').click(function() {
-        player = addDeck(player, 'z');
+        let selected = document.getElementById('shop').querySelectorAll('img.selected');
+        if (selected.length != 1) {
+            alert('select 1 only');
+        } else {
+            let adding = selected[0].src.split('/').pop();
+            player = addDeck(player, adding);
+            shopInven[adding] = shopInven[adding] - 1;
+        }
     });
 }
 
