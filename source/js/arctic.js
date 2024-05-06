@@ -11,9 +11,9 @@ function shuffle(deck) {
 }
 
 function draw(hand, struct) {
-    var handSize = getComputedStyle(hand).getPropertyValue('--hand-size');
-    handSize = Number(handSize) + 1;
-    hand.style.setProperty('--hand-size', handSize);
+    // var handSize = getComputedStyle(hand).getPropertyValue('--hand-size');
+    // handSize = Number(handSize) + 1;
+    // hand.style.setProperty('--hand-size', handSize);
 
     var card = document.createElement("img");
     card.setAttribute("src", '');
@@ -89,9 +89,9 @@ function init() {
         player = draw(hand, player);
     }
 
-    $('#play').click(function() {
-        document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());
-    });
+    // $('#play').click(function() {
+    //     document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());
+    // });
 
     $('#end').click(function() {
         var selected = document.getElementsByClassName('card');
@@ -111,6 +111,14 @@ function init() {
             player = addDeck(player, adding);
             shopInven[adding] = shopInven[adding] - 1;
         }
+    });
+
+    $('#draw').click(function() {
+        let selected = document.getElementById('hand').querySelectorAll('img.selected');
+        for (let i=0;i<selected.length; i++) {
+            player = draw(hand, player);
+        }
+        selected.forEach(e => e.remove());
     });
 }
 
