@@ -29,6 +29,7 @@ function draw(hand, struct) {
     struct['discard'].push(struct['deck'][0]);
     struct['deck'].shift();
 
+    $('#deck').html('deck: ' + struct.deck.length);
     return struct
 }
 
@@ -52,6 +53,21 @@ function updateShop(shop, shopInven) {
         item.setAttribute("src", key);
         item.classList.add('item');
         shop.appendChild(item);
+
+        // var count = document.createElement('p');
+        // count.innerHTML += value;
+        // shop.appendChild(count);
+    }
+}
+
+function dig(depth, junk) {
+    for (let i=0; i<depth; i++) {
+        let temp = junk[Math.floor(Math.random()*junk.length)];
+        var tempCard = document.createElement("img");
+        // tempCard.setAttribute("src", temp);
+        tempCard.setAttribute("src", '');
+        tempCard.classList.add('card');
+        document.getElementById('junkSample').appendChild(tempCard);
     }
 }
 
@@ -68,13 +84,20 @@ function init() {
         t: 5,
         s: 5
     }
-    
-    updateShop(shop, shopInven);
-
+    var junkyard = [
+        'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 
+        'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 
+        'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 
+        'n', 'n', 'n', 'n', 'n', 'n', 
+        'sh', 'sh', 'sh', 'sh', 'sh', 
+        's', 's', 's', 's', 's'
+    ]
     var player = {
         deck: ['a','b','c','d','e','f','g','h','i','j'],
         discard: []
     }
+
+    updateShop(shop, shopInven);
 
     $(document).on('click','img',function(event) {
         var clicked = event.target;
@@ -88,6 +111,9 @@ function init() {
     for (let i=0; i<5; i++) {
         player = draw(hand, player);
     }
+
+    $('#deck').html('deck: ' + player.deck.length);
+    $('#junk').html('junkyard: ' + junkyard.length);
 
     // $('#play').click(function() {
     //     document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());
@@ -118,6 +144,14 @@ function init() {
         for (let i=0;i<selected.length; i++) {
             player = draw(hand, player);
         }
+        selected.forEach(e => e.remove());
+    });
+
+    $('#dig').click(function() {
+        let selected = document.getElementById('hand').querySelectorAll('img.selected');
+        dig(selected.length, junkyard);
+        document.getElementById('junkSample').style.setProperty('--hand-size', selected.length);
+        document.getElementById('junkSample').style.display='grid';
         selected.forEach(e => e.remove());
     });
 }

@@ -65,3 +65,4 @@
 05-02 centered with shop  
 05-03 adding cards from shop to deck  
 05-06 added draw function  
+05-07 started junkyard  

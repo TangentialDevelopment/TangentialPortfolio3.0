@@ -72,6 +72,28 @@ img {
     }
 }
 
+#junk {
+    margin-top: 60px;
+}
+
+#junkSample {
+    --hand-size: 0;
+    --width: 200px;
+    --transition-duration: 500ms;
+
+    display: none;
+    gap: .25rem;
+    grid-template-columns: repeat(var(--hand-size), var(--width));
+
+    transition: grid-template-columns var(--transition-duration);
+    transition-delay: var(--transition-duration);
+    overflow-x: auto;
+    height: 500px;
+    padding: 75px 100px 100px;
+    margin-left: -100px;
+    margin-right: -100px;
+}
+
 #hand {
     --hand-size: 5;
     --width: 200px;
@@ -86,7 +108,7 @@ img {
     transition-delay: var(--transition-duration);
     overflow-x: auto;
     height: 500px;
-    padding: 100px 100px 100px;
+    padding: 75px 100px 100px;
     margin-left: -100px;
     margin-right: -100px;
 }
