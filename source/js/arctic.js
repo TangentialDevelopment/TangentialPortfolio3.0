@@ -64,8 +64,8 @@ function dig(depth, junk) {
     for (let i=0; i<depth; i++) {
         let temp = junk[Math.floor(Math.random()*junk.length)];
         var tempCard = document.createElement("img");
-        // tempCard.setAttribute("src", temp);
-        tempCard.setAttribute("src", '');
+        tempCard.setAttribute("src", temp);
+        // tempCard.setAttribute("src", '');
         tempCard.classList.add('card');
         document.getElementById('junkSample').appendChild(tempCard);
     }
@@ -126,6 +126,7 @@ function init() {
             selected[0].remove();
         }
         player = endTurn(hand, player);
+        // junkyard = shuffle(junkyard);
     });
 
     $('#add').click(function() {
@@ -153,6 +154,35 @@ function init() {
         document.getElementById('junkSample').style.setProperty('--hand-size', selected.length);
         document.getElementById('junkSample').style.display='grid';
         selected.forEach(e => e.remove());
+        
+        var button = document.createElement("button");
+        button.setAttribute("id", 'addDig');
+        button.setAttribute("class", 'btn btn-primary');
+        button.setAttribute("type", 'button');
+        button.innerHTML = 'Add to deck';
+        document.getElementById('junkSample').appendChild(button);
+    });
+
+    $(document).on('click', '#addDig', function() {
+        let tempSelected = document.getElementById('junkSample').querySelectorAll('img.selected');
+
+        if (tempSelected.length != 1) {
+            alert('select only 1 card');  
+        } else {
+            if (tempSelected.length == 1) {
+                player.discard.push(tempSelected[0].src.split('/').pop());
+                tempSelected.forEach(e => e.remove());
+            }
+
+            let tempDiscard = document.getElementById('junkSample').querySelectorAll('img');
+            for (let i=0; i<tempDiscard.length;i++) {
+                junkyard.push(tempDiscard[i].src);
+            }
+
+            document.getElementById('junkSample').querySelectorAll('img').forEach(e => e.remove());
+            document.getElementById('junkSample').querySelectorAll('button').forEach(e => e.remove());
+            document.getElementById('junkSample').style.display='none';
+        }
     });
 }
 
