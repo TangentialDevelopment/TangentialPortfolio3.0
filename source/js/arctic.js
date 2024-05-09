@@ -96,6 +96,7 @@ function init() {
         deck: ['a','b','c','d','e','f','g','h','i','j'],
         discard: []
     }
+    var fightSaved = [];
 
     updateShop(shop, shopInven);
 
@@ -120,13 +121,32 @@ function init() {
     // });
 
     $('#end').click(function() {
-        var selected = document.getElementsByClassName('card');
-        var length = selected.length;
+        let selected = document.getElementsByClassName('card');
+        let length = selected.length;
         for (let i=0; i<length; i++) {
             selected[0].remove();
         }
         player = endTurn(hand, player);
+        fightSaved = [];
+        document.getElementById("fight").disabled = false; 
+        document.getElementById("add").disabled = false; 
+        document.getElementById("draw").disabled = false; 
+        document.getElementById("dig").disabled = false; 
         // junkyard = shuffle(junkyard);
+    });
+
+    $('#fight').click(function() {
+        let selected =  document.getElementById('hand').querySelectorAll('img.selected');
+        document.getElementById('fightSave').style.display='block';
+        $('#fightSave').html('Saved: ' + selected.length);
+
+        for (let i=0; i<selected.length; i++) {
+            let adding = selected[i].src.split('/').pop();
+            fightSaved.push(adding);
+        }
+        selected.forEach(e => e.remove());
+
+        document.getElementById("fight").disabled = true; 
     });
 
     $('#add').click(function() {
@@ -138,6 +158,8 @@ function init() {
             player = addDeck(player, adding);
             shopInven[adding] = shopInven[adding] - 1;
         }
+
+        document.getElementById("add").disabled = true; 
     });
 
     $('#draw').click(function() {
@@ -146,6 +168,8 @@ function init() {
             player = draw(hand, player);
         }
         selected.forEach(e => e.remove());
+
+        document.getElementById("draw").disabled = true; 
     });
 
     $('#dig').click(function() {
@@ -161,6 +185,8 @@ function init() {
         button.setAttribute("type", 'button');
         button.innerHTML = 'Add to deck';
         document.getElementById('junkSample').appendChild(button);
+
+        document.getElementById("dig").disabled = true; 
     });
 
     $(document).on('click', '#addDig', function() {
@@ -183,6 +209,8 @@ function init() {
             document.getElementById('junkSample').querySelectorAll('button').forEach(e => e.remove());
             document.getElementById('junkSample').style.display='none';
         }
+
+        $('#junk').html('junkyard: ' + junkyard.length);
     });
 }
 
