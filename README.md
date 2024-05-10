@@ -68,3 +68,4 @@
 05-07 started junkyard  
 05-08 finished dig action  
 05-09 finished fight and button interactions  
+05-10 fixed dig bug  

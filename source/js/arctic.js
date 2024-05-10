@@ -50,7 +50,8 @@ function endTurn(hand, deck) {
 function updateShop(shop, shopInven) {
     for (const [key, value] of Object.entries(shopInven)) {
         var item = document.createElement('img');
-        item.setAttribute("src", key);
+        // item.setAttribute("src", key);
+        item.setAttribute("src", '');
         item.classList.add('item');
         shop.appendChild(item);
 
@@ -60,12 +61,12 @@ function updateShop(shop, shopInven) {
     }
 }
 
-function dig(depth, junk) {
-    for (let i=0; i<depth; i++) {
-        let temp = junk[Math.floor(Math.random()*junk.length)];
+function dig(junk) {
+    for (let i=0; i<junk.length; i++) {
+        // let temp = junk[Math.floor(Math.random()*junk.length)];
+        let temp = junk[i];
         var tempCard = document.createElement("img");
         tempCard.setAttribute("src", temp);
-        // tempCard.setAttribute("src", '');
         tempCard.classList.add('card');
         document.getElementById('junkSample').appendChild(tempCard);
     }
@@ -112,6 +113,7 @@ function init() {
     for (let i=0; i<5; i++) {
         player = draw(hand, player);
     }
+    junkyard = shuffle(junkyard);
 
     $('#deck').html('deck: ' + player.deck.length);
     $('#junk').html('junkyard: ' + junkyard.length);
@@ -174,7 +176,11 @@ function init() {
 
     $('#dig').click(function() {
         let selected = document.getElementById('hand').querySelectorAll('img.selected');
-        dig(selected.length, junkyard);
+        let drawn = junkyard.slice(0, selected.length);
+        for (let i=0; i<selected.length; i++) {
+            junkyard.shift();
+        }
+        dig(drawn);
         document.getElementById('junkSample').style.setProperty('--hand-size', selected.length);
         document.getElementById('junkSample').style.display='grid';
         selected.forEach(e => e.remove());
@@ -196,13 +202,15 @@ function init() {
             alert('select only 1 card');  
         } else {
             if (tempSelected.length == 1) {
-                player.discard.push(tempSelected[0].src.split('/').pop());
+                let = tempDiscard = tempSelected[0].src.split('/').pop();
+                player.discard.push(tempDiscard);
                 tempSelected.forEach(e => e.remove());
             }
 
-            let tempDiscard = document.getElementById('junkSample').querySelectorAll('img');
-            for (let i=0; i<tempDiscard.length;i++) {
-                junkyard.push(tempDiscard[i].src);
+            let reshuffle = document.getElementById('junkSample').querySelectorAll('img');
+            for (let i=0; i<reshuffle.length; i++) {
+                console.log(reshuffle[i].src.split('/').pop());
+                junkyard.push(reshuffle[i].src.split('/').pop());
             }
 
             document.getElementById('junkSample').querySelectorAll('img').forEach(e => e.remove());
