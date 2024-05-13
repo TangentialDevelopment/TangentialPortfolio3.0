@@ -16,8 +16,8 @@ function draw(hand, struct) {
     // hand.style.setProperty('--hand-size', handSize);
 
     var card = document.createElement("img");
-    card.setAttribute("src", '');
-    card.classList.add('card');
+    card.setAttribute("src", '../../source/images/arctic/'+struct['deck'][0]+'.png');
+    // card.classList.add('card');
     hand.appendChild(card);
 
     if (struct['deck'].length==0) {
@@ -50,8 +50,8 @@ function endTurn(hand, deck) {
 function updateShop(shop, shopInven) {
     for (const [key, value] of Object.entries(shopInven)) {
         var item = document.createElement('img');
-        // item.setAttribute("src", key);
-        item.setAttribute("src", '');
+        item.setAttribute("src", '../../source/images/arctic/'+key+'.png');
+        // item.setAttribute("src", '');
         item.classList.add('item');
         shop.appendChild(item);
 
@@ -76,7 +76,7 @@ function init() {
     var hand = document.getElementById("hand");
     var shop = document.getElementById('shop');
     var shopInven = {
-        z: 5,
+        scav: 5,
         y: 5,
         x: 5,
         w: 5,
@@ -94,7 +94,7 @@ function init() {
         's', 's', 's', 's', 's'
     ]
     var player = {
-        deck: ['a','b','c','d','e','f','g','h','i','j'],
+        deck: ['scav','scav','scav','d','e','f','g','h','i','j'],
         discard: []
     }
     var fightSaved = [];
@@ -103,7 +103,7 @@ function init() {
 
     $(document).on('click','img',function(event) {
         var clicked = event.target;
-        if (clicked.classList[1] == 'selected') {
+        if (clicked.classList.contains('selected')) {
             clicked.classList.remove('selected');
         } else {
             clicked.classList.add('selected');
@@ -134,7 +134,7 @@ function init() {
         document.getElementById("add").disabled = false; 
         document.getElementById("draw").disabled = false; 
         document.getElementById("dig").disabled = false; 
-        // junkyard = shuffle(junkyard);
+        junkyard = shuffle(junkyard);
     });
 
     $('#fight').click(function() {
@@ -209,7 +209,6 @@ function init() {
 
             let reshuffle = document.getElementById('junkSample').querySelectorAll('img');
             for (let i=0; i<reshuffle.length; i++) {
-                console.log(reshuffle[i].src.split('/').pop());
                 junkyard.push(reshuffle[i].src.split('/').pop());
             }
 
