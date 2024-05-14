@@ -70,3 +70,4 @@
 05-09 finished fight and button interactions  
 05-10 fixed dig bug  
 05-13 added scav card  
+05-14 finished scav, added scout  

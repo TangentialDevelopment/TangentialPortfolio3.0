@@ -17,7 +17,7 @@ function draw(hand, struct) {
 
     var card = document.createElement("img");
     card.setAttribute("src", '../../source/images/arctic/'+struct['deck'][0]+'.png');
-    // card.classList.add('card');
+    card.classList.add('card');
     hand.appendChild(card);
 
     if (struct['deck'].length==0) {
@@ -75,9 +75,13 @@ function dig(junk) {
 function init() {
     var hand = document.getElementById("hand");
     var shop = document.getElementById('shop');
+    var cardTypes = {
+        scav: [1,0,'draw','dig','hunt','fight',1],
+        scout: [2,1,'draw','fight',1]
+    };
     var shopInven = {
         scav: 5,
-        y: 5,
+        scout: 5,
         x: 5,
         w: 5,
         v: 5,
