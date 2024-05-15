@@ -71,3 +71,4 @@
 05-10 fixed dig bug  
 05-13 added scav card  
 05-14 finished scav, added scout  
+05-15 added hunters  

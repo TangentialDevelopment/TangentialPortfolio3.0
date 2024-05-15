@@ -16,7 +16,7 @@ function draw(hand, struct) {
     // hand.style.setProperty('--hand-size', handSize);
 
     var card = document.createElement("img");
-    card.setAttribute("src", '../../source/images/arctic/'+struct['deck'][0]+'.png');
+    card.setAttribute("src", '../../source/images/arctic/'+struct['deck'][0]);
     card.classList.add('card');
     hand.appendChild(card);
 
@@ -43,6 +43,11 @@ function endTurn(hand, deck) {
         deck = draw(hand, deck);
     }
     hand.style.setProperty('--hand-size', 5);
+
+    let selected = document.querySelectorAll('img.selected');
+    for (let i=0; i<selected.length; i++) {
+        selected[i].classList.remove('selected');
+    }
 
     return deck
 }
@@ -76,13 +81,15 @@ function init() {
     var hand = document.getElementById("hand");
     var shop = document.getElementById('shop');
     var cardTypes = {
-        scav: [1,0,'draw','dig','hunt','fight',1],
-        scout: [2,1,'draw','fight',1]
+        //      0food, 1med, 2draw, 3dig, 4hunt, 5medicine, 6fight, 7tribe count
+        scav:   [1,    null, 1,     1,    1,     null,      1,      1],
+        scout:  [2,    1,    2,     null, null,  null,      2,      1],
+        hunter: [0,    1,    null,  null, 2,     null,      1,      1]
     };
     var shopInven = {
         scav: 5,
         scout: 5,
-        x: 5,
+        hunter: 5,
         w: 5,
         v: 5,
         u: 5,
@@ -98,33 +105,39 @@ function init() {
         's', 's', 's', 's', 's'
     ]
     var player = {
-        deck: ['scav','scav','scav','d','e','f','g','h','i','j'],
+        deck: ['scav.png','scav.png','scav.png','d','e','f','g','h','i','j'],
         discard: []
     }
     var fightSaved = [];
 
+    player.deck = shuffle(player.deck);
+    junkyard = shuffle(junkyard);
     updateShop(shop, shopInven);
 
-    $(document).on('click','img',function(event) {
-        var clicked = event.target;
+    $(document).on('click','img', function(event) {
+        let clicked = event.target;
+
         if (clicked.classList.contains('selected')) {
             clicked.classList.remove('selected');
         } else {
             clicked.classList.add('selected');
         }
+
+        // if (clicked.parentElement.id == 'hand') {
+        //     let selected = document.getElementById('hand').querySelectorAll('img.selected');
+        //     for (let i=0; i<selected.length; i++) {
+        //         type = selected[i].src.split('/').pop().split('.')[0];
+        //         console.log(cardTypes[type]);
+        //     }
+        // }
     });
     
     for (let i=0; i<5; i++) {
         player = draw(hand, player);
     }
-    junkyard = shuffle(junkyard);
 
     $('#deck').html('deck: ' + player.deck.length);
     $('#junk').html('junkyard: ' + junkyard.length);
-
-    // $('#play').click(function() {
-    //     document.getElementById('hand').querySelectorAll('img.selected').forEach(e => e.remove());
-    // });
 
     $('#end').click(function() {
         let selected = document.getElementsByClassName('card');
@@ -134,10 +147,9 @@ function init() {
         }
         player = endTurn(hand, player);
         fightSaved = [];
-        document.getElementById("fight").disabled = false; 
-        document.getElementById("add").disabled = false; 
-        document.getElementById("draw").disabled = false; 
-        document.getElementById("dig").disabled = false; 
+        // document.getElementById("buy").disabled = true; 
+        // document.getElementById("draw").disabled = true; 
+        // document.getElementById("dig").disabled = true; 
         junkyard = shuffle(junkyard);
     });
 
@@ -151,11 +163,9 @@ function init() {
             fightSaved.push(adding);
         }
         selected.forEach(e => e.remove());
-
-        document.getElementById("fight").disabled = true; 
     });
 
-    $('#add').click(function() {
+    $('#buy').click(function() {
         let selected = document.getElementById('shop').querySelectorAll('img.selected');
         if (selected.length != 1) {
             alert('select 1 only');
@@ -165,7 +175,7 @@ function init() {
             shopInven[adding] = shopInven[adding] - 1;
         }
 
-        document.getElementById("add").disabled = true; 
+        // document.getElementById("buy").disabled = true; 
     });
 
     $('#draw').click(function() {
@@ -175,11 +185,14 @@ function init() {
         }
         selected.forEach(e => e.remove());
 
-        document.getElementById("draw").disabled = true; 
+        // document.getElementById("draw").disabled = true; 
     });
 
     $('#dig').click(function() {
         let selected = document.getElementById('hand').querySelectorAll('img.selected');
+        if (selected.length == 0) {
+            return;
+        }
         let drawn = junkyard.slice(0, selected.length);
         for (let i=0; i<selected.length; i++) {
             junkyard.shift();
@@ -196,7 +209,7 @@ function init() {
         button.innerHTML = 'Add to deck';
         document.getElementById('junkSample').appendChild(button);
 
-        document.getElementById("dig").disabled = true; 
+        // document.getElementById("dig").disabled = true; 
     });
 
     $(document).on('click', '#addDig', function() {
