@@ -113,9 +113,15 @@ function init() {
     player.deck = shuffle(player.deck);
     junkyard = shuffle(junkyard);
     updateShop(shop, shopInven);
+    document.getElementById("draw").disabled = true;
+    document.getElementById("buy").disabled = true;
+    document.getElementById("dig").disabled = true;
 
     $(document).on('click','img', function(event) {
         let clicked = event.target;
+        document.getElementById("draw").disabled = true;
+        document.getElementById("buy").disabled = true;
+        document.getElementById("dig").disabled = true;
 
         if (clicked.classList.contains('selected')) {
             clicked.classList.remove('selected');
@@ -123,13 +129,43 @@ function init() {
             clicked.classList.add('selected');
         }
 
-        // if (clicked.parentElement.id == 'hand') {
-        //     let selected = document.getElementById('hand').querySelectorAll('img.selected');
-        //     for (let i=0; i<selected.length; i++) {
-        //         type = selected[i].src.split('/').pop().split('.')[0];
-        //         console.log(cardTypes[type]);
-        //     }
-        // }
+        if (clicked.parentElement.id == 'hand') {
+            let selected = document.getElementById('hand').querySelectorAll('img.selected');
+            let draw = [];
+            let dig = [];
+            let hunt = [];
+            let medicine = [];
+            let drawV = 0;
+            let digV = 0;
+            let huntV = 0;
+            let medV = 0;
+            for (let i=0; i<selected.length; i++) {
+                type = cardTypes[selected[i].src.split('/').pop().split('.')[0]];
+
+                draw.push(type[2]);
+                dig.push(type[3]);
+                hunt.push(type[4]);
+                medicine.push(type[5]);
+            }
+            if (null in draw) {
+                document.getElementById("draw").disabled = true; 
+            } else {
+                for (i in draw) {
+                    drawV += draw[i];
+                }
+                document.getElementById("draw").disabled = false; 
+                console.log(drawV);
+            }
+            if (null in dig) {
+                document.getElementById("dig").disabled = true; 
+            } else {
+                for (i in dig) {
+                    digV += dig[i];
+                }
+                document.getElementById("dig").disabled = false; 
+                console.log(digV);
+            }
+        }
     });
     
     for (let i=0; i<5; i++) {
