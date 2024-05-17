@@ -119,9 +119,9 @@ function init() {
 
     $(document).on('click','img', function(event) {
         let clicked = event.target;
-        document.getElementById("draw").disabled = true;
-        document.getElementById("buy").disabled = true;
-        document.getElementById("dig").disabled = true;
+        // document.getElementById("draw").disabled = true;
+        // document.getElementById("buy").disabled = true;
+        // document.getElementById("dig").disabled = true;
 
         if (clicked.classList.contains('selected')) {
             clicked.classList.remove('selected');
@@ -131,14 +131,12 @@ function init() {
 
         if (clicked.parentElement.id == 'hand') {
             let selected = document.getElementById('hand').querySelectorAll('img.selected');
-            let draw = [];
-            let dig = [];
             let hunt = [];
             let medicine = [];
+            let draw = [];
+            let dig = [];
             let drawV = 0;
             let digV = 0;
-            let huntV = 0;
-            let medV = 0;
             for (let i=0; i<selected.length; i++) {
                 type = cardTypes[selected[i].src.split('/').pop().split('.')[0]];
 
@@ -154,7 +152,7 @@ function init() {
                     drawV += draw[i];
                 }
                 document.getElementById("draw").disabled = false; 
-                console.log(drawV);
+                // console.log(drawV);
             }
             if (null in dig) {
                 document.getElementById("dig").disabled = true; 
@@ -163,7 +161,13 @@ function init() {
                     digV += dig[i];
                 }
                 document.getElementById("dig").disabled = false; 
-                console.log(digV);
+                // console.log(digV);
+            }
+
+            if (null in hunt && null in medicine) {
+                document.getElementById("buy").disabled = true; 
+            } else {
+                document.getElementById("buy").disabled = false;
             }
         }
     });
@@ -202,13 +206,36 @@ function init() {
     });
 
     $('#buy').click(function() {
-        let selected = document.getElementById('shop').querySelectorAll('img.selected');
+        var selected = document.getElementById('shop').querySelectorAll('img.selected');
         if (selected.length != 1) {
             alert('select 1 only');
         } else {
+            let hunt = [];
+            let medicine = [];
+            let huntV = 0;
+            let medV = 0;
+            let selectedHand = document.getElementById('hand').querySelectorAll('img.selected');
+            for (let i=0; i<selectedHand.length; i++) {
+                type = cardTypes[selectedHand[i].src.split('/').pop().split('.')[0]];
+
+                hunt.push(type[4]);
+                medicine.push(type[5]);
+                for (i in hunt) {
+                    huntV += hunt[i];
+                }
+                for (i in medicine) {
+                    medV =+ medicine[i];
+                }
+            }
+            
+            console.log(huntV, medV);
+
             let adding = selected[0].src.split('/').pop();
             player = addDeck(player, adding);
             shopInven[adding] = shopInven[adding] - 1;
+            selectedHand.forEach(e => e.remove());
+            
+            selected[0].classList.remove('selected');
         }
 
         // document.getElementById("buy").disabled = true; 

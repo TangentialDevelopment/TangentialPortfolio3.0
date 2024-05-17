@@ -73,3 +73,4 @@
 05-14 finished scav, added scout  
 05-15 added hunters  
 05-16 added tracking behavior  
+05-17 added costs  
