@@ -87,14 +87,14 @@ function init() {
         hunter: [0,    1,    null,  null, 2,     null,      1,      1]
     };
     var shopInven = {
-        scav: 5,
-        scout: 5,
-        hunter: 5,
-        w: 5,
-        v: 5,
-        u: 5,
-        t: 5,
-        s: 5
+        scav: 20,
+        scout: 8,
+        hunter: 8,
+        brawler: 10,
+        groupLeader: 5,
+        thug: 5,
+        saboteur: 8,
+        sniper: 5
     }
     var junkyard = [
         'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 
