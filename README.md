@@ -74,3 +74,4 @@
 05-15 added hunters  
 05-16 added tracking behavior  
 05-17 added costs  
+05-18 edited images

@@ -81,10 +81,16 @@ function init() {
     var hand = document.getElementById("hand");
     var shop = document.getElementById('shop');
     var cardTypes = {
-        //      0food, 1med, 2draw, 3dig, 4hunt, 5medicine, 6fight, 7tribe count
-        scav:   [1,    null, 1,     1,    1,     null,      1,      1],
-        scout:  [2,    1,    2,     null, null,  null,      2,      1],
-        hunter: [0,    1,    null,  null, 2,     null,      1,      1]
+        //           0food, 1med, 2draw, 3dig, 4hunt, 5medicine, 6fight, 7tribe count
+        scav:        [1,    null, 1,     1,    1,     null,      1,      1],
+        scout:       [2,    1,    2,     null, null,  null,      2,      1],
+        hunter:      [0,    1,    null,  null, 2,     null,      1,      1],
+        brawler:     [2,    null, null,  1,    null,  null,      2,      1],
+        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2],
+        thug:        [3,    3,    null,  1,    null,  null,      3,      3],
+        saboteur:    [1,    1,    null,  1,    null,  null,      1,      1],
+        sniper:      [2,    2,    null,  null, null,  null,      null,   2],
+        refugee:     [0,    null, null,  0,    0,     null,      null,   1]
     };
     var shopInven = {
         scav: 20,
@@ -105,7 +111,7 @@ function init() {
         's', 's', 's', 's', 's'
     ]
     var player = {
-        deck: ['scav.png','scav.png','scav.png','d','e','f','g','h','i','j'],
+        deck: ['scav.png','scav.png','scav.png','brawler.png','e','f','g','h','i','j'],
         discard: []
     }
     var fightSaved = [];
