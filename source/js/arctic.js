@@ -1,3 +1,14 @@
+function nullCheck(array) {
+    for (let i=0; i<array.length;i++) {
+        let value = array[i];
+        if (value == null) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function shuffle(deck) {
     var m = deck.length, t, i;
     while (m) {
@@ -82,15 +93,15 @@ function init() {
     var shop = document.getElementById('shop');
     var cardTypes = {
         //           0food, 1med, 2draw, 3dig, 4hunt, 5medicine, 6fight, 7tribe count
-        scav:        [1,    null, 1,     1,    1,     null,      1,      1],
+        scav:        [1,    0,    1,     1,    1,     null,      1,      1],
         scout:       [2,    1,    2,     null, null,  null,      2,      1],
         hunter:      [0,    1,    null,  null, 2,     null,      1,      1],
-        brawler:     [2,    null, null,  1,    null,  null,      2,      1],
+        brawler:     [2,    0,    null,  1,    null,  null,      2,      1],
         groupLeader: [2,    2,    2,     2,    2,     null,      2,      2],
         thug:        [3,    3,    null,  1,    null,  null,      3,      3],
         saboteur:    [1,    1,    null,  1,    null,  null,      1,      1],
         sniper:      [2,    2,    null,  null, null,  null,      null,   2],
-        refugee:     [0,    null, null,  0,    0,     null,      null,   1]
+        refugee:     [0,    0,    null,  0,    0,     null,      null,   1]
     };
     var shopInven = {
         scav: 20,
@@ -111,7 +122,7 @@ function init() {
         's', 's', 's', 's', 's'
     ]
     var player = {
-        deck: ['scav.png','scav.png','scav.png','brawler.png','e','f','g','h','i','j'],
+        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','sniper.png','j'],
         discard: []
     }
     var fightSaved = [];
@@ -125,9 +136,6 @@ function init() {
 
     $(document).on('click','img', function(event) {
         let clicked = event.target;
-        // document.getElementById("draw").disabled = true;
-        // document.getElementById("buy").disabled = true;
-        // document.getElementById("dig").disabled = true;
 
         if (clicked.classList.contains('selected')) {
             clicked.classList.remove('selected');
@@ -151,29 +159,37 @@ function init() {
                 hunt.push(type[4]);
                 medicine.push(type[5]);
             }
-            if (null in draw) {
-                document.getElementById("draw").disabled = true; 
-            } else {
-                for (i in draw) {
-                    drawV += draw[i];
-                }
-                document.getElementById("draw").disabled = false; 
-                // console.log(drawV);
-            }
-            if (null in dig) {
-                document.getElementById("dig").disabled = true; 
-            } else {
-                for (i in dig) {
-                    digV += dig[i];
-                }
-                document.getElementById("dig").disabled = false; 
-                // console.log(digV);
-            }
 
-            if (null in hunt && null in medicine) {
-                document.getElementById("buy").disabled = true; 
+            if (selected.length == 0) {
+                console.log('test');
+                document.getElementById("draw").disabled = true;
+                document.getElementById("buy").disabled = true;
+                document.getElementById("dig").disabled = true;
             } else {
-                document.getElementById("buy").disabled = false;
+                if (nullCheck(draw)) {
+                    document.getElementById("draw").disabled = true; 
+                } else {
+                    for (i in draw) {
+                        drawV += draw[i];
+                    }
+                    document.getElementById("draw").disabled = false; 
+                    // console.log(drawV);
+                }
+                if (nullCheck(dig)) {
+                    document.getElementById("dig").disabled = true; 
+                } else {
+                    for (i in dig) {
+                        digV += dig[i];
+                    }
+                    document.getElementById("dig").disabled = false; 
+                    // console.log(digV);
+                }
+    
+                if (nullCheck(hunt) && nullCheck(medicine)) {
+                    document.getElementById("buy").disabled = true; 
+                } else {
+                    document.getElementById("buy").disabled = false;
+                }
             }
         }
     });
@@ -237,11 +253,28 @@ function init() {
             console.log(huntV, medV);
 
             let adding = selected[0].src.split('/').pop();
-            player = addDeck(player, adding);
-            shopInven[adding] = shopInven[adding] - 1;
-            selectedHand.forEach(e => e.remove());
-            
-            selected[0].classList.remove('selected');
+            let cost = cardTypes[adding.split('.')[0]].slice(0,2);
+
+            if (adding.split('.')[0] == 'thug') {
+                let combined = huntV + medV;
+                if (combined >= 6) {
+                    player = addDeck(player, adding);
+                    shopInven[adding] = shopInven[adding] - 1;
+                    selectedHand.forEach(e => e.remove());
+                    
+                    selected[0].classList.remove('selected');
+                } else {
+                    alert('not enough');
+                }
+            } else if (huntV >= cost[0] && medV >= cost[1]) {
+                player = addDeck(player, adding);
+                shopInven[adding] = shopInven[adding] - 1;
+                selectedHand.forEach(e => e.remove());
+                
+                selected[0].classList.remove('selected');
+            } else {
+                alert('not enough');
+            }
         }
 
         // document.getElementById("buy").disabled = true; 

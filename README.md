@@ -74,5 +74,7 @@
 05-15 added hunters  
 05-16 added tracking behavior  
 05-17 added costs  
-05-18 edited images
-05-19 edited images 2  
+05-20 edited images
+05-21 edited images 2  
+05-22 edited images 3  
+05-23 fixed reselect  
