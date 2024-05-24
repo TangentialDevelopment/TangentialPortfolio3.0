@@ -92,16 +92,33 @@ function init() {
     var hand = document.getElementById("hand");
     var shop = document.getElementById('shop');
     var cardTypes = {
-        //           0food, 1med, 2draw, 3dig, 4hunt, 5medicine, 6fight, 7tribe count
-        scav:        [1,    0,    1,     1,    1,     null,      1,      1],
-        scout:       [2,    1,    2,     null, null,  null,      2,      1],
-        hunter:      [0,    1,    null,  null, 2,     null,      1,      1],
-        brawler:     [2,    0,    null,  1,    null,  null,      2,      1],
-        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2],
-        thug:        [3,    3,    null,  1,    null,  null,      3,      3],
-        saboteur:    [1,    1,    null,  1,    null,  null,      1,      1],
-        sniper:      [2,    2,    null,  null, null,  null,      null,   2],
-        refugee:     [0,    0,    null,  0,    0,     null,      null,   1]
+        //           0food, 1med, 2draw, 3dig, 4hunt, 5medicine, 6fight, 7count 8tool
+        scav:        [1,    0,    1,     1,    1,     null,      1,      1,     0],
+        scout:       [2,    1,    2,     null, null,  null,      2,      1,     0],
+        hunter:      [0,    1,    null,  null, 2,     null,      1,      1,     0],
+        brawler:     [2,    0,    null,  1,    null,  null,      2,      1,     0],
+        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2,     2],
+        thug:        [3,    3,    null,  1,    null,  null,      3,      3,     0],
+        saboteur:    [1,    1,    null,  1,    null,  null,      1,      1,     0],
+        sniper:      [2,    2,    null,  null, null,  null,      null,   2,     0],
+        refugee:     [0,    0,    null,  0,    0,     null,      null,   1,     0],
+        //junkyard
+        junk:        [null, null, null,  null, null,  null,      null,   0,     1],
+        medkit:      [null, null, null,  null, null,  2,         null,   0,     1],
+        multitool:   [null, null, null,  1,    1,     null,      1,      0,     1],
+        net:         [null, null, null,  null, 2,     null,      1,      0,     1],
+        pickaxe:     [null, null, null,  1,    null,  null,      2,      0,     1],
+        pills:       [null, null, null,  null, null,  1,         null,   0,     1], 
+        shovel:      [null, null, null,  2,    null,  null,      1,      0,     1],
+        spear:       [null, null, null,  null, 1,     null,      2,      0,     1],
+        //contested
+        fieldCrew:   [null, null, null,  2,    2,     null,      2,      4,     0],
+        grenade:     [null, null, null,  null, null,  null,      3,      0,     1],
+        sledTeam:    [null, null, 2,     null, null,  null,      1,      2,     0],
+        tf3:         [null, null, null,  null, 0,     null,      0,      3,     0],
+        tf4:         [null, null, null,  null, 0,     null,      0,      4,     0],
+        tf5:         [null, null, null,  null, 0,     null,      0,      5,     0],
+        wolf:        [null, null, null,  null, 3,     null,      2,      0,     1]
     };
     var shopInven = {
         scav: 20,
@@ -114,25 +131,33 @@ function init() {
         sniper: 5
     }
     var junkyard = [
-        'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 'j', 
-        'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 
-        'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 
-        'n', 'n', 'n', 'n', 'n', 'n', 
-        'sh', 'sh', 'sh', 'sh', 'sh', 
-        's', 's', 's', 's', 's'
+        'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png',
+        'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png',
+        'pills.png', 'pills.png', 'pills.png', 'pills.png', 'pills.png', 'pills.png', 'pills.png', 'pills.png', 'pills.png',
+        'pickaxe.png', 'pickaxe.png', 'pickaxe.png', 'pickaxe.png',
+        'multitool.png', 'multitool.png', 'multitool.png', 'multitool.png', 
+        'net.png', 'net.png', 'net.png', 'net.png', 
+        'shovel.png', 'shovel.png',
+        'spear.png', 'spear.png'
     ]
+    var contested = [
+        'fieldCrew.png', 'fieldCrew.png', 'tf3.png', 'tf3.png', 'tf4.png', 'tf4.png', 'tf5.png', 'tf5.png', 
+        'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
+    ];
     var player = {
-        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','sniper.png','j'],
+        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
         discard: []
     }
     var fightSaved = [];
 
     player.deck = shuffle(player.deck);
     junkyard = shuffle(junkyard);
+    contested = shuffle(contested)
     updateShop(shop, shopInven);
     document.getElementById("draw").disabled = true;
     document.getElementById("buy").disabled = true;
     document.getElementById("dig").disabled = true;
+    document.getElementById("discard").disabled = true;
 
     $(document).on('click','img', function(event) {
         let clicked = event.target;
@@ -151,6 +176,9 @@ function init() {
             let dig = [];
             let drawV = 0;
             let digV = 0;
+
+            document.getElementById("discard").disabled = false;
+
             for (let i=0; i<selected.length; i++) {
                 type = cardTypes[selected[i].src.split('/').pop().split('.')[0]];
 
@@ -161,10 +189,10 @@ function init() {
             }
 
             if (selected.length == 0) {
-                console.log('test');
                 document.getElementById("draw").disabled = true;
                 document.getElementById("buy").disabled = true;
                 document.getElementById("dig").disabled = true;
+                document.getElementById("discard").disabled = true;
             } else {
                 if (nullCheck(draw)) {
                     document.getElementById("draw").disabled = true; 
@@ -200,6 +228,18 @@ function init() {
 
     $('#deck').html('deck: ' + player.deck.length);
     $('#junk').html('junkyard: ' + junkyard.length);
+
+    $('#discard').click(function() {
+        let selected =  document.getElementById('hand').querySelectorAll('img.selected');
+        for (let i=0;i<selected.length;i++) {
+            let add = selected[i].src.split('/').pop();
+            junkyard.push(add);
+        }
+        
+        selected.forEach(e => e.remove());
+        $('#junk').html('junkyard: ' + junkyard.length);
+        console.log(junkyard);
+    });
 
     $('#end').click(function() {
         let selected = document.getElementsByClassName('card');
@@ -249,9 +289,7 @@ function init() {
                     medV =+ medicine[i];
                 }
             }
-            
-            console.log(huntV, medV);
-
+            // console.log(huntV, medV);
             let adding = selected[0].src.split('/').pop();
             let cost = cardTypes[adding.split('.')[0]].slice(0,2);
 

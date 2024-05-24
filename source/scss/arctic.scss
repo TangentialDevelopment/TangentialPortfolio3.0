@@ -163,3 +163,10 @@ img {
 .interaction {
     place-items: center;
 }
+
+#addDig {
+    margin-top: 40px;
+    max-height: 40px;
+    grid-column: 1 / -1;
+    margin-left: -15px;
+}
