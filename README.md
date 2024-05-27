@@ -79,3 +79,4 @@
 05-22 edited images 3  
 05-23 fixed reselect  
 05-24 added discard  
+05-27 field crew and grenade  
