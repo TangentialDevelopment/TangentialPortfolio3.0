@@ -221,7 +221,8 @@ function init() {
             }
         }
     });
-    
+
+    $('#discard').html('discard: ' + player.discard.length);
     for (let i=0; i<5; i++) {
         player = draw(hand, player);
     }
@@ -247,12 +248,16 @@ function init() {
         for (let i=0; i<length; i++) {
             selected[0].remove();
         }
+
+        $('#discard').html('discard: ' + player.discard.length);
         player = endTurn(hand, player);
         fightSaved = [];
         // document.getElementById("buy").disabled = true; 
         // document.getElementById("draw").disabled = true; 
         // document.getElementById("dig").disabled = true; 
         junkyard = shuffle(junkyard);
+        $('#deck').html('deck: ' + player.deck.length);
+        $('#junk').html('junkyard: ' + junkyard.length);
     });
 
     $('#fight').click(function() {
