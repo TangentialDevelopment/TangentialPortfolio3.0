@@ -223,12 +223,37 @@ function init() {
     });
 
     $('#discard').html('discard: ' + player.discard.length);
+    $('#discard').hover(function() {
+        let tempDeck2 = shuffle(player.discard);
+        let display2 = [];
+        for(let i=0;i<tempDeck2.length;i++) {
+            display2[i] = ' ' + tempDeck2[i].slice(0,-4);
+        }
+        $('#showDiscard').html('discard: ' + display2);
+        $('#showDiscard').css('display', 'block');
+    }, function() {
+        $('#showDiscard').css("display", "none");}
+    );
+
+    //FIX THIS HAND IS DIFFERENT THAN DISCARD
     for (let i=0; i<5; i++) {
         player = draw(hand, player);
     }
 
     $('#deck').html('deck: ' + player.deck.length);
     $('#junk').html('junkyard: ' + junkyard.length);
+
+    $('#deck').hover(function() {
+        let tempDeck = shuffle(player.deck);
+        let display = [];
+        for(let i=0;i<tempDeck.length;i++) {
+            display[i] = ' ' + tempDeck[i].slice(0,-4);
+        }
+        $('#showDeck').html('deck: ' + display);
+        $('#showDeck').css('display', 'block');
+    }, function() {
+        $('#showDeck').css("display", "none");}
+    );
 
     $('#discard').click(function() {
         let selected =  document.getElementById('hand').querySelectorAll('img.selected');

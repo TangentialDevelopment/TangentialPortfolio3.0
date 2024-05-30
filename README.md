@@ -82,3 +82,4 @@
 05-27 field crew and grenade  
 05-28 finished contested  
 05-29 bug fixes  
+05-30 show deck/discard  
