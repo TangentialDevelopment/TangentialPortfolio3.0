@@ -26,18 +26,19 @@ function draw(hand, struct) {
     // handSize = Number(handSize) + 1;
     // hand.style.setProperty('--hand-size', handSize);
 
-    var card = document.createElement("img");
-    card.setAttribute("src", '../../source/images/arctic/'+struct['deck'][0]);
-    card.classList.add('card');
-    hand.appendChild(card);
-
     if (struct['deck'].length==0) {
         struct['deck'] = struct['deck'].concat(struct['discard']);
         struct['discard'] = [];
 
         struct['deck'] = shuffle(struct['deck']);
     }
-    struct['discard'].push(struct['deck'][0]);
+
+    var card = document.createElement("img");
+    card.setAttribute("src", '../../source/images/arctic/'+struct['deck'][0]);
+    card.classList.add('card');
+    hand.appendChild(card);
+
+    struct['hand'].push(struct['deck'][0]);
     struct['deck'].shift();
 
     $('#deck').html('deck: ' + struct.deck.length);
@@ -50,15 +51,26 @@ function addDeck(deck, target) {
 }
 
 function endTurn(hand, deck) {
+    if(deck.hand.length > 0) {
+        for(let i=0;i<deck.hand.length;i++) {
+            deck.discard.push(deck.hand[i]);
+        }
+
+        deck.hand =[];
+    }
+
     for (let i=0; i<5; i++) {
         deck = draw(hand, deck);
     }
+
     hand.style.setProperty('--hand-size', 5);
 
     let selected = document.querySelectorAll('img.selected');
     for (let i=0; i<selected.length; i++) {
         selected[i].classList.remove('selected');
     }
+
+    $('#discard').html('discard: ' + deck.discard.length);
 
     return deck
 }
@@ -71,8 +83,8 @@ function updateShop(shop, shopInven) {
         item.classList.add('item');
         shop.appendChild(item);
 
-        // var count = document.createElement('p');
-        // count.innerHTML += value;
+        var count = document.createElement('p');
+        count.innerHTML += value;
         // shop.appendChild(count);
     }
 }
@@ -146,6 +158,7 @@ function init() {
     ];
     var player = {
         deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
+        hand: [],
         discard: []
     }
     var fightSaved = [];
@@ -235,7 +248,6 @@ function init() {
         $('#showDiscard').css("display", "none");}
     );
 
-    //FIX THIS HAND IS DIFFERENT THAN DISCARD
     for (let i=0; i<5; i++) {
         player = draw(hand, player);
     }
