@@ -84,3 +84,4 @@
 05-29 bug fixes  
 05-30 show deck/discard  
 05-31 fixed hand discard counts  
+06-03 added initial fight logic  

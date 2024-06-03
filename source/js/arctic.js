@@ -101,6 +101,7 @@ function dig(junk) {
 }
 
 function init() {
+    var turn = 0;
     var hand = document.getElementById("hand");
     var shop = document.getElementById('shop');
     var cardTypes = {
@@ -165,7 +166,7 @@ function init() {
 
     player.deck = shuffle(player.deck);
     junkyard = shuffle(junkyard);
-    contested = shuffle(contested)
+    contested = shuffle(contested);
     updateShop(shop, shopInven);
     document.getElementById("draw").disabled = true;
     document.getElementById("buy").disabled = true;
@@ -235,6 +236,8 @@ function init() {
         }
     });
 
+    $('#contested').html('contested: ' + contested.length);
+
     $('#discard').html('discard: ' + player.discard.length);
     $('#discard').hover(function() {
         let tempDeck2 = shuffle(player.discard);
@@ -280,6 +283,7 @@ function init() {
     });
 
     $('#end').click(function() {
+        turn += 1;
         let selected = document.getElementsByClassName('card');
         let length = selected.length;
         for (let i=0; i<length; i++) {
@@ -287,14 +291,28 @@ function init() {
         }
 
         $('#discard').html('discard: ' + player.discard.length);
+
+        if (turn > 2) {
+            let value = 0;
+            fightSaved.forEach(
+                (element) => value += cardTypes[element.split('.')[0]][6]
+            );
+
+            if (value > 4) {
+                let prize = contested.pop();
+                player = addDeck(player, prize);
+            }
+        }
         player = endTurn(hand, player);
         fightSaved = [];
+        $('#fightSave').html(null);
         // document.getElementById("buy").disabled = true; 
         // document.getElementById("draw").disabled = true; 
         // document.getElementById("dig").disabled = true; 
         junkyard = shuffle(junkyard);
         $('#deck').html('deck: ' + player.deck.length);
         $('#junk').html('junkyard: ' + junkyard.length);
+        $('#contested').html('contested: ' + contested.length);
     });
 
     $('#fight').click(function() {
@@ -307,6 +325,8 @@ function init() {
             fightSaved.push(adding);
         }
         selected.forEach(e => e.remove());
+
+        $('#fightSave').html('Saved for the fight: ' + fightSaved.length);
     });
 
     $('#buy').click(function() {
