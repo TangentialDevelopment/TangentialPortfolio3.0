@@ -300,7 +300,12 @@ function init() {
 
             if (value > 4) {
                 let prize = contested.pop();
+                $('#fightPreview').show();
+                $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
                 player = addDeck(player, prize);
+            } else {
+                $('#fightPreview').show();
+                $('#fightPreview').html('Fight Lost');
             }
         }
         player = endTurn(hand, player);

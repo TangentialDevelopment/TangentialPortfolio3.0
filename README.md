@@ -85,3 +85,4 @@
 05-30 show deck/discard  
 05-31 fixed hand discard counts  
 06-03 added initial fight logic  
+06-04 added fight preview  
