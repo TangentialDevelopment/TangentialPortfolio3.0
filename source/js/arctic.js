@@ -70,7 +70,7 @@ function endTurn(hand, deck) {
         selected[i].classList.remove('selected');
     }
 
-    $('#discard').html('discard: ' + deck.discard.length);
+    $('#discardPile').html('discard: ' + deck.discard.length);
 
     return deck
 }
@@ -98,6 +98,21 @@ function dig(junk) {
         tempCard.classList.add('card');
         document.getElementById('junkSample').appendChild(tempCard);
     }
+}
+
+function tribeCount(player, cardTypes) {
+    var tribeCount = 0;
+    player.deck.forEach(
+        (element) => tribeCount += cardTypes[element.split('.')[0]][7]
+    );
+    player.discard.forEach(
+        (element) => tribeCount += cardTypes[element.split('.')[0]][7]
+    );
+    player.hand.forEach(
+        (element) => tribeCount += cardTypes[element.split('.')[0]][7]
+    );
+
+    return tribeCount;
 }
 
 function init() {
@@ -173,6 +188,46 @@ function init() {
     document.getElementById("dig").disabled = true;
     document.getElementById("discard").disabled = true;
 
+    $('#contested').html('contested: ' + contested.length);
+    $('#discardPile').html('discard: ' + player.discard.length);
+    
+    $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
+
+    for (let i=0; i<5; i++) {
+        player = draw(hand, player);
+    }
+
+    $('#deck').html('deck: ' + player.deck.length);
+    $('#junk').html('junkyard: ' + junkyard.length);
+
+    $('#discardPile').hover(function() {
+        let tempDeck2 = shuffle(player.discard);
+        let display2 = [];
+        for(let i=0;i<tempDeck2.length;i++) {
+            display2[i] = ' ' + tempDeck2[i].slice(0,-4);
+        }
+        $('#showDiscard').html('discard: ' + display2);
+        if (display2.length > 0) {
+            $('#showDiscard').css('display', 'block');
+        }
+    }, function() {
+        $('#showDiscard').css("display", "none");}
+    );
+
+    $('#deck').hover(function() {
+        let tempDeck = shuffle(player.deck);
+        let display = [];
+        for(let i=0;i<tempDeck.length;i++) {
+            display[i] = ' ' + tempDeck[i].slice(0,-4);
+        }
+        $('#showDeck').html('deck: ' + display);
+        if (display.length >0) {
+            $('#showDeck').css('display', 'block');
+        }
+    }, function() {
+        $('#showDeck').css("display", "none");}
+    );
+
     $(document).on('click','img', function(event) {
         let clicked = event.target;
 
@@ -236,50 +291,17 @@ function init() {
         }
     });
 
-    $('#contested').html('contested: ' + contested.length);
-
-    $('#discard').html('discard: ' + player.discard.length);
-    $('#discard').hover(function() {
-        let tempDeck2 = shuffle(player.discard);
-        let display2 = [];
-        for(let i=0;i<tempDeck2.length;i++) {
-            display2[i] = ' ' + tempDeck2[i].slice(0,-4);
-        }
-        $('#showDiscard').html('discard: ' + display2);
-        $('#showDiscard').css('display', 'block');
-    }, function() {
-        $('#showDiscard').css("display", "none");}
-    );
-
-    for (let i=0; i<5; i++) {
-        player = draw(hand, player);
-    }
-
-    $('#deck').html('deck: ' + player.deck.length);
-    $('#junk').html('junkyard: ' + junkyard.length);
-
-    $('#deck').hover(function() {
-        let tempDeck = shuffle(player.deck);
-        let display = [];
-        for(let i=0;i<tempDeck.length;i++) {
-            display[i] = ' ' + tempDeck[i].slice(0,-4);
-        }
-        $('#showDeck').html('deck: ' + display);
-        $('#showDeck').css('display', 'block');
-    }, function() {
-        $('#showDeck').css("display", "none");}
-    );
-
     $('#discard').click(function() {
         let selected =  document.getElementById('hand').querySelectorAll('img.selected');
         for (let i=0;i<selected.length;i++) {
             let add = selected[i].src.split('/').pop();
+            let place = player.hand.indexOf(add);
+            player.hand.splice(place, 1);
+
             junkyard.push(add);
         }
-        
-        selected.forEach(e => e.remove());
         $('#junk').html('junkyard: ' + junkyard.length);
-        console.log(junkyard);
+        $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
     });
 
     $('#end').click(function() {
@@ -290,7 +312,7 @@ function init() {
             selected[0].remove();
         }
 
-        $('#discard').html('discard: ' + player.discard.length);
+        $('#discardPile').html('discard: ' + player.discard.length);
 
         if (turn > 2) {
             let value = 0;
@@ -308,6 +330,7 @@ function init() {
                 $('#fightPreview').html('Fight Lost');
             }
         }
+        $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
         player = endTurn(hand, player);
         fightSaved = [];
         $('#fightSave').html(null);
@@ -331,7 +354,12 @@ function init() {
         }
         selected.forEach(e => e.remove());
 
-        $('#fightSave').html('Saved for the fight: ' + fightSaved.length);
+        let power = 0
+        fightSaved.forEach(
+            (element) => power += cardTypes[element.split('.')[0]][6]
+        );
+
+        $('#fightSave').html('Power saved for the fight: ' + power);
     });
 
     $('#buy').click(function() {
@@ -383,6 +411,7 @@ function init() {
         }
 
         // document.getElementById("buy").disabled = true; 
+        $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
     });
 
     $('#draw').click(function() {
@@ -442,6 +471,7 @@ function init() {
         }
 
         $('#junk').html('junkyard: ' + junkyard.length);
+        $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
     });
 }
 
