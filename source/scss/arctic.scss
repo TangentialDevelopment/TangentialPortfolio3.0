@@ -74,6 +74,15 @@ img {
     }
 }
 
+.info {
+    position: relative;
+    border: 5px solid cadetblue;
+    box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
+    width: 130px;
+    padding: 3px;
+    margin: -200px 0px 100px 110%;
+}
+
 #junk {
     margin-top: 60px;
 }
@@ -90,9 +99,9 @@ img {
     transition: grid-template-columns var(--transition-duration);
     transition-delay: var(--transition-duration);
     overflow-x: auto;
-    height: 550px;
-    padding: 75px 100px 100px;
-    margin-left: -100px;
+    height: 400px;
+    padding: 50px 100px 0;
+    // margin-left: -100px;
     margin-right: -100px;
 }
 

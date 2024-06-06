@@ -94,7 +94,7 @@ function dig(junk) {
         // let temp = junk[Math.floor(Math.random()*junk.length)];
         let temp = junk[i];
         var tempCard = document.createElement("img");
-        tempCard.setAttribute("src", temp);
+        tempCard.setAttribute("src", '../../source/images/arctic/'+temp);
         tempCard.classList.add('card');
         document.getElementById('junkSample').appendChild(tempCard);
     }
@@ -245,6 +245,8 @@ function init() {
             let dig = [];
             let drawV = 0;
             let digV = 0;
+            let huntV = 0;
+            let medV = 0;
 
             document.getElementById("discard").disabled = false;
 
@@ -255,6 +257,13 @@ function init() {
                 dig.push(type[3]);
                 hunt.push(type[4]);
                 medicine.push(type[5]);
+
+                for (i in hunt) {
+                    huntV += hunt[i];
+                }
+                for (i in medicine) {
+                    medV =+ medicine[i];
+                }
             }
 
             if (selected.length == 0) {
@@ -281,8 +290,8 @@ function init() {
                     document.getElementById("dig").disabled = false; 
                     // console.log(digV);
                 }
-    
-                if (nullCheck(hunt) && nullCheck(medicine)) {
+
+                if (huntV+medV == 0) {
                     document.getElementById("buy").disabled = true; 
                 } else {
                     document.getElementById("buy").disabled = false;
@@ -300,6 +309,8 @@ function init() {
 
             junkyard.push(add);
         }
+        selected.forEach(e => e.remove());
+
         $('#junk').html('junkyard: ' + junkyard.length);
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
     });
@@ -381,10 +392,10 @@ function init() {
                     huntV += hunt[i];
                 }
                 for (i in medicine) {
-                    medV =+ medicine[i];
+                    medV += medicine[i];
                 }
             }
-            // console.log(huntV, medV);
+
             let adding = selected[0].src.split('/').pop();
             let cost = cardTypes[adding.split('.')[0]].slice(0,2);
 
