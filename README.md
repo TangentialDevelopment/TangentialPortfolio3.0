@@ -88,3 +88,4 @@
 06-04 added fight preview  
 06-05 added tribe count  
 06-07 fixed buy logic  
+06-08 added close button  

@@ -173,9 +173,13 @@ img {
     place-items: center;
 }
 
-#addDig {
+.digButton {
     margin-top: 40px;
     max-height: 40px;
     grid-column: 1 / -1;
     margin-left: -15px;
+}
+
+#closeDig {
+    margin-top: -20px;
 }

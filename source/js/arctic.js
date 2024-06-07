@@ -449,14 +449,33 @@ function init() {
         document.getElementById('junkSample').style.display='grid';
         selected.forEach(e => e.remove());
         
-        var button = document.createElement("button");
-        button.setAttribute("id", 'addDig');
-        button.setAttribute("class", 'btn btn-primary');
-        button.setAttribute("type", 'button');
-        button.innerHTML = 'Add to deck';
-        document.getElementById('junkSample').appendChild(button);
+        let add = document.createElement("button");
+        add.setAttribute("id", 'addDig');
+        add.setAttribute("class", 'btn btn-primary digButton');
+        add.setAttribute("type", 'button');
+        add.innerHTML = 'Add to deck';
+        document.getElementById('junkSample').appendChild(add);
+
+        let close = document.createElement("button");
+        close.setAttribute("id", 'closeDig');
+        close.setAttribute("class", 'btn btn-primary digButton');
+        close.setAttribute("type", 'button');
+        close.innerHTML = 'none';
+        document.getElementById('junkSample').appendChild(close);
 
         // document.getElementById("dig").disabled = true; 
+    });
+
+    $(document).on('click', '#closeDig', function() {
+        let reshuffle = document.getElementById('junkSample').querySelectorAll('img');
+        for (let i=0; i<reshuffle.length; i++) {
+            junkyard.push(reshuffle[i].src.split('/').pop());
+        }
+        document.getElementById('junkSample').querySelectorAll('button').forEach(e => e.remove());
+        document.getElementById('junkSample').style.display='none';
+
+        $('#junk').html('junkyard: ' + junkyard.length);
+        $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
     });
 
     $(document).on('click', '#addDig', function() {
