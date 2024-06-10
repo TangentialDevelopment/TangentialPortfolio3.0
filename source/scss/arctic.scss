@@ -26,6 +26,7 @@ img {
         object-fit: cover;
         box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
         grid-column: span 2;
+        filter: brightness(.8) saturate(.8);
         clip-path: path('M 80 20 C 100 0 100 0 120 20 C 140 40 160 60 180 80 C 200 100 200 100 180 120 C 160 140 140 160 120 180 C 100 200 100 200 80 180 C 60 160 40 140 20 120 C 0 100 0 100 20 80 Z');
         transition: 
             filter 500ms,
@@ -71,6 +72,28 @@ img {
     .item:hover + .item,
     .item:has( + .item:hover) {
         filter: brightness(.9) saturate(.9);
+    }
+}
+
+#shopCount {
+    position: relative;
+    margin-top: -275px;
+    margin-left: 150px;
+    display: grid;
+    gap: .30rem;
+
+    grid-template-columns: repeat(3, 190px);
+    grid-template-rows: repeat(3, 100px);
+
+    .count {
+        color: white;
+        font-size: 18px;
+        font-weight: 800;
+        text-shadow: 0 0 2px black;
+
+        &:nth-of-type(4) {
+            grid-column: 1 / span 2;
+        }
     }
 }
 

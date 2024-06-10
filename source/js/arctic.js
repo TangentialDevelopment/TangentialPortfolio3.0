@@ -79,13 +79,13 @@ function updateShop(shop, shopInven) {
     for (const [key, value] of Object.entries(shopInven)) {
         var item = document.createElement('img');
         item.setAttribute("src", '../../source/images/arctic/'+key+'.png');
-        // item.setAttribute("src", '');
         item.classList.add('item');
         shop.appendChild(item);
 
         var count = document.createElement('p');
+        count.classList.add('count');
         count.innerHTML += value;
-        // shop.appendChild(count);
+        document.getElementById("shopCount").appendChild(count);
     }
 }
 
@@ -279,7 +279,6 @@ function init() {
                         drawV += draw[i];
                     }
                     document.getElementById("draw").disabled = false; 
-                    // console.log(drawV);
                 }
                 if (nullCheck(dig)) {
                     document.getElementById("dig").disabled = true; 
@@ -288,7 +287,6 @@ function init() {
                         digV += dig[i];
                     }
                     document.getElementById("dig").disabled = false; 
-                    // console.log(digV);
                 }
 
                 if (huntV+medV == 0) {
@@ -421,7 +419,7 @@ function init() {
             }
         }
 
-        // document.getElementById("buy").disabled = true; 
+        document.getElementById("buy").disabled = true; 
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
     });
 
@@ -432,7 +430,7 @@ function init() {
         }
         selected.forEach(e => e.remove());
 
-        // document.getElementById("draw").disabled = true; 
+        document.getElementById("draw").disabled = true; 
     });
 
     $('#dig').click(function() {
@@ -463,7 +461,7 @@ function init() {
         close.innerHTML = 'none';
         document.getElementById('junkSample').appendChild(close);
 
-        // document.getElementById("dig").disabled = true; 
+        document.getElementById("dig").disabled = true; 
     });
 
     $(document).on('click', '#closeDig', function() {
