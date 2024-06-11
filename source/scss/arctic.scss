@@ -76,6 +76,13 @@ img {
 }
 
 #shopCount {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    pointer-events: none;
+    
     position: relative;
     margin-top: -275px;
     margin-left: 150px;
@@ -93,6 +100,14 @@ img {
 
         &:nth-of-type(4) {
             grid-column: 1 / span 2;
+        }
+
+        &:nth-child(4) {
+            padding-left: 100px;
+        }
+
+        &:nth-child(5) {
+            margin-left: -90px;
         }
     }
 }

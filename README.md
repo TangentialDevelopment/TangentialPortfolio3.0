@@ -90,3 +90,4 @@
 06-07 fixed buy logic  
 06-08 added close button  
 06-10 added counts  
+06-11 fixed counts and lockout  

@@ -76,6 +76,8 @@ function endTurn(hand, deck) {
 }
 
 function updateShop(shop, shopInven) {
+    shop.innerHTML= '';
+    document.getElementById('shopCount').innerHTML = '';
     for (const [key, value] of Object.entries(shopInven)) {
         var item = document.createElement('img');
         item.setAttribute("src", '../../source/images/arctic/'+key+'.png');
@@ -175,7 +177,8 @@ function init() {
     var player = {
         deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
         hand: [],
-        discard: []
+        discard: [],
+        action: []
     }
     var fightSaved = [];
 
@@ -272,7 +275,7 @@ function init() {
                 document.getElementById("dig").disabled = true;
                 document.getElementById("discard").disabled = true;
             } else {
-                if (nullCheck(draw)) {
+                if (nullCheck(draw) || (player.action.includes('draw'))) {
                     document.getElementById("draw").disabled = true; 
                 } else {
                     for (i in draw) {
@@ -280,7 +283,7 @@ function init() {
                     }
                     document.getElementById("draw").disabled = false; 
                 }
-                if (nullCheck(dig)) {
+                if (nullCheck(dig) || (player.action.includes('dig'))) {
                     document.getElementById("dig").disabled = true; 
                 } else {
                     for (i in dig) {
@@ -289,7 +292,7 @@ function init() {
                     document.getElementById("dig").disabled = false; 
                 }
 
-                if (huntV+medV == 0) {
+                if (huntV+medV == 0 || (player.action.includes('buy'))) {
                     document.getElementById("buy").disabled = true; 
                 } else {
                     document.getElementById("buy").disabled = false;
@@ -350,6 +353,7 @@ function init() {
         $('#deck').html('deck: ' + player.deck.length);
         $('#junk').html('junkyard: ' + junkyard.length);
         $('#contested').html('contested: ' + contested.length);
+        player.action = [];
     });
 
     $('#fight').click(function() {
@@ -369,6 +373,8 @@ function init() {
         );
 
         $('#fightSave').html('Power saved for the fight: ' + power);
+
+        player.action.push('fight');
     });
 
     $('#buy').click(function() {
@@ -401,7 +407,7 @@ function init() {
                 let combined = huntV + medV;
                 if (combined >= 6) {
                     player = addDeck(player, adding);
-                    shopInven[adding] = shopInven[adding] - 1;
+                    shopInven[adding.split('.')[0]] = shopInven[adding.split('.')[0]] - 1;
                     selectedHand.forEach(e => e.remove());
                     
                     selected[0].classList.remove('selected');
@@ -410,7 +416,7 @@ function init() {
                 }
             } else if (huntV >= cost[0] && medV >= cost[1]) {
                 player = addDeck(player, adding);
-                shopInven[adding] = shopInven[adding] - 1;
+                shopInven[adding.split('.')[0]] = shopInven[adding.split('.')[0]] - 1;
                 selectedHand.forEach(e => e.remove());
                 
                 selected[0].classList.remove('selected');
@@ -421,6 +427,8 @@ function init() {
 
         document.getElementById("buy").disabled = true; 
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
+        updateShop(shop, shopInven);
+        player.action.push('buy');
     });
 
     $('#draw').click(function() {
@@ -431,6 +439,7 @@ function init() {
         selected.forEach(e => e.remove());
 
         document.getElementById("draw").disabled = true; 
+        player.action.push('draw');
     });
 
     $('#dig').click(function() {
@@ -461,7 +470,8 @@ function init() {
         close.innerHTML = 'none';
         document.getElementById('junkSample').appendChild(close);
 
-        document.getElementById("dig").disabled = true; 
+        document.getElementById("dig").disabled = true;
+        player.action.push('dig');
     });
 
     $(document).on('click', '#closeDig', function() {
