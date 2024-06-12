@@ -91,3 +91,4 @@
 06-08 added close button  
 06-10 added counts  
 06-11 fixed counts and lockout  
+06-12 adjusted home page  

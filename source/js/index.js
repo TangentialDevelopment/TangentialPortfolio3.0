@@ -15,9 +15,10 @@ function init() {
     document.getElementById('cursor').style.display = (display == 'inline') ? 'none' : 'inline';
   }, 450);
 
-  section = '.'
-    $('.experience').addClass('hide');
+  let section = '.'
+    // $('.experience').addClass('hide');
     $('.education').addClass('hide');
+    $('.games').addClass('hide');
     
     $('.selector').on('click', function click(){
       $('.current').removeClass("current");
@@ -25,30 +26,31 @@ function init() {
       $('.skills-row').hide();
   
       $(this).addClass('current');
-      if (this.innerHTML == 'Skills') {
-        $('.skills-row').show();
-      }
+      // if (this.innerHTML == 'Skills') {
+      //   $('.skills-row').show();
+      // }
       text = section +this.innerHTML.toLowerCase();
+      text = text.split(' ')[0];
       $(text).removeClass('hide');
     });
 
-    $('#webdev').hover(
-      function() {
-        $('.row-1').addClass('clicked');
-        $('.row-2').addClass('clicked');
-      }, function() {
-        $('.row-1').removeClass('clicked');
-        $('.row-2').removeClass('clicked');
-      }
-    )
+    // $('#webdev').hover(
+    //   function() {
+    //     $('.row-1').addClass('clicked');
+    //     $('.row-2').addClass('clicked');
+    //   }, function() {
+    //     $('.row-1').removeClass('clicked');
+    //     $('.row-2').removeClass('clicked');
+    //   }
+    // )
 
-    $('#ux').hover(
-      function() {
-        $('.row-3').addClass('clicked');
-      }, function() {
-        $('.row-3').removeClass('clicked');
-      }
-    )
+    // $('#ux').hover(
+    //   function() {
+    //     $('.row-3').addClass('clicked');
+    //   }, function() {
+    //     $('.row-3').removeClass('clicked');
+    //   }
+    // )
 
     //the overlay
     // $(function() {
