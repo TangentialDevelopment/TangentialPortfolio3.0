@@ -117,6 +117,17 @@ function tribeCount(player, cardTypes) {
     return tribeCount;
 }
 
+function endGame(player, deck, cardTypes) {   
+    if (deck.length == 1) {
+        alert('last turn');
+        deck.pop();
+    }
+
+    $('#end').click(function() {
+        alert('Tribe Count: ' + tribeCount(player, cardTypes))
+    });
+}
+
 function init() {
     var turn = 0;
     var hand = document.getElementById("hand");
@@ -174,6 +185,9 @@ function init() {
         'fieldCrew.png', 'fieldCrew.png', 'tf3.png', 'tf3.png', 'tf4.png', 'tf4.png', 'tf5.png', 'tf5.png', 
         'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
     ];
+    // var contested = [
+    //     'fieldCrew.png'
+    // ];
     var player = {
         deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
         hand: [],
@@ -354,6 +368,8 @@ function init() {
         $('#junk').html('junkyard: ' + junkyard.length);
         $('#contested').html('contested: ' + contested.length);
         player.action = [];
+
+        endGame(player, contested, cardTypes);
     });
 
     $('#fight').click(function() {
