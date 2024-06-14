@@ -93,3 +93,4 @@
 06-11 fixed counts and lockout  
 06-12 adjusted home page  
 06-13 added end game conditions  
+06-14 fixed end game  

@@ -119,13 +119,11 @@ function tribeCount(player, cardTypes) {
 
 function endGame(player, deck, cardTypes) {   
     if (deck.length == 1) {
-        alert('last turn');
-        deck.pop();
+        $('#end').click(function() {
+            alert('Tribe Count: ' + tribeCount(player, cardTypes));
+            return true;
+        });
     }
-
-    $('#end').click(function() {
-        alert('Tribe Count: ' + tribeCount(player, cardTypes))
-    });
 }
 
 function init() {
@@ -185,9 +183,6 @@ function init() {
         'fieldCrew.png', 'fieldCrew.png', 'tf3.png', 'tf3.png', 'tf4.png', 'tf4.png', 'tf5.png', 'tf5.png', 
         'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
     ];
-    // var contested = [
-    //     'fieldCrew.png'
-    // ];
     var player = {
         deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
         hand: [],
@@ -352,24 +347,24 @@ function init() {
                 $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
                 player = addDeck(player, prize);
             } else {
+                contested.pop();
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Lost');
             }
         }
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
         player = endTurn(hand, player);
-        fightSaved = [];
-        $('#fightSave').html(null);
-        // document.getElementById("buy").disabled = true; 
-        // document.getElementById("draw").disabled = true; 
-        // document.getElementById("dig").disabled = true; 
-        junkyard = shuffle(junkyard);
-        $('#deck').html('deck: ' + player.deck.length);
-        $('#junk').html('junkyard: ' + junkyard.length);
-        $('#contested').html('contested: ' + contested.length);
-        player.action = [];
-
-        endGame(player, contested, cardTypes);
+        if (endGame(player, contested, cardTypes)) {
+            return;
+        } else {
+            fightSaved = [];
+            $('#fightSave').html(null);
+            junkyard = shuffle(junkyard);
+            $('#deck').html('deck: ' + player.deck.length);
+            $('#junk').html('junkyard: ' + junkyard.length);
+            $('#contested').html('contested: ' + contested.length);
+            player.action = [];
+        };
     });
 
     $('#fight').click(function() {
