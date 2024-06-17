@@ -195,6 +195,7 @@ function init() {
     junkyard = shuffle(junkyard);
     contested = shuffle(contested);
     updateShop(shop, shopInven);
+    document.getElementById("fight").disabled = true;
     document.getElementById("draw").disabled = true;
     document.getElementById("buy").disabled = true;
     document.getElementById("dig").disabled = true;
@@ -262,6 +263,10 @@ function init() {
 
             document.getElementById("discard").disabled = false;
 
+            if (turn > 1) {
+                document.getElementById("fight").disabled = false;
+            }
+            
             for (let i=0; i<selected.length; i++) {
                 type = cardTypes[selected[i].src.split('/').pop().split('.')[0]];
 
@@ -444,7 +449,13 @@ function init() {
 
     $('#draw').click(function() {
         let selected = document.getElementById('hand').querySelectorAll('img.selected');
+        let drawNum = 0;
         for (let i=0;i<selected.length; i++) {
+            drawNum += cardTypes[selected[i].src.split('/').pop().split('.')[0]][2];
+        }
+        let handSize = 5 - selected.length + drawNum;
+        document.getElementById('hand').style.setProperty('--hand-size', handSize);
+        for (let i=0;i<drawNum; i++) {
             player = draw(hand, player);
         }
         selected.forEach(e => e.remove());

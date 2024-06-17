@@ -94,3 +94,4 @@
 06-12 adjusted home page  
 06-13 added end game conditions  
 06-14 fixed end game  
+06-17 fixed draw function  
