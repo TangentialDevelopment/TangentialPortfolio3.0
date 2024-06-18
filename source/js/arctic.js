@@ -160,10 +160,11 @@ function init() {
         wolf:        [null, null, null,  null, 3,     null,      2,      0,     1]
     };
     var shopInven = {
-        scav: 20,
+        // scav: 8,
+        scav: 1,
         scout: 8,
         hunter: 8,
-        brawler: 10,
+        brawler: 6,
         groupLeader: 5,
         thug: 5,
         saboteur: 8,
@@ -418,33 +419,41 @@ function init() {
 
             let adding = selected[0].src.split('/').pop();
             let cost = cardTypes[adding.split('.')[0]].slice(0,2);
+            let inven = shopInven[adding.split('.')[0]];
 
-            if (adding.split('.')[0] == 'thug') {
-                let combined = huntV + medV;
-                if (combined >= 6) {
+            if (inven > 0) {
+                if (adding.split('.')[0] == 'thug') {
+                    let combined = huntV + medV;
+                    if (combined >= 6) {
+                        player = addDeck(player, adding);
+                        shopInven[adding.split('.')[0]] = inven - 1;
+                        selectedHand.forEach(e => e.remove());
+                        
+                        selected[0].classList.remove('selected');
+
+                        document.getElementById("buy").disabled = true; 
+                        player.action.push('buy');
+                    } else {
+                        alert('not enough resources');
+                    }
+                } else if (huntV >= cost[0] && medV >= cost[1]) {
                     player = addDeck(player, adding);
-                    shopInven[adding.split('.')[0]] = shopInven[adding.split('.')[0]] - 1;
+                    shopInven[adding.split('.')[0]] = inven - 1;
                     selectedHand.forEach(e => e.remove());
                     
                     selected[0].classList.remove('selected');
+                    document.getElementById("buy").disabled = true; 
+                    player.action.push('buy');
                 } else {
-                    alert('not enough');
+                    alert('not enough resources');
                 }
-            } else if (huntV >= cost[0] && medV >= cost[1]) {
-                player = addDeck(player, adding);
-                shopInven[adding.split('.')[0]] = shopInven[adding.split('.')[0]] - 1;
-                selectedHand.forEach(e => e.remove());
-                
-                selected[0].classList.remove('selected');
             } else {
-                alert('not enough');
+                alert('out of stock');
             }
         }
 
-        document.getElementById("buy").disabled = true; 
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
         updateShop(shop, shopInven);
-        player.action.push('buy');
     });
 
     $('#draw').click(function() {
