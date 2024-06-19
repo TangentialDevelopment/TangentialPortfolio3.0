@@ -160,8 +160,8 @@ function init() {
         wolf:        [null, null, null,  null, 3,     null,      2,      0,     1]
     };
     var shopInven = {
-        // scav: 8,
-        scav: 1,
+        scav: 8,
+        // scav: 1,
         scout: 8,
         hunter: 8,
         brawler: 6,
@@ -318,6 +318,7 @@ function init() {
 
     $('#discard').click(function() {
         let selected =  document.getElementById('hand').querySelectorAll('img.selected');
+        $('#actionBar').html('Discarded: ' + selected.length + ' cards');
         for (let i=0;i<selected.length;i++) {
             let add = selected[i].src.split('/').pop();
             let place = player.hand.indexOf(add);
@@ -332,6 +333,7 @@ function init() {
     });
 
     $('#end').click(function() {
+        $('#actionBar').html('');
         turn += 1;
         let selected = document.getElementsByClassName('card');
         let length = selected.length;
@@ -364,7 +366,7 @@ function init() {
             return;
         } else {
             fightSaved = [];
-            $('#fightSave').html(null);
+            $('#fightSave').html('Saved: 0');
             junkyard = shuffle(junkyard);
             $('#deck').html('deck: ' + player.deck.length);
             $('#junk').html('junkyard: ' + junkyard.length);
@@ -375,9 +377,7 @@ function init() {
 
     $('#fight').click(function() {
         let selected =  document.getElementById('hand').querySelectorAll('img.selected');
-        document.getElementById('fightSave').style.display='block';
-        $('#fightSave').html('Saved: ' + selected.length);
-
+        $('#actionBar').html('Saved: ' + selected.length + ' cards');
         for (let i=0; i<selected.length; i++) {
             let adding = selected[i].src.split('/').pop();
             fightSaved.push(adding);
@@ -389,7 +389,7 @@ function init() {
             (element) => power += cardTypes[element.split('.')[0]][6]
         );
 
-        $('#fightSave').html('Power saved for the fight: ' + power);
+        $('#fightSave').html('Saved: ' + power);
 
         player.action.push('fight');
     });
@@ -433,6 +433,7 @@ function init() {
 
                         document.getElementById("buy").disabled = true; 
                         player.action.push('buy');
+                        $('#actionBar').html('Bought: ' + adding);
                     } else {
                         alert('not enough resources');
                     }
@@ -444,6 +445,7 @@ function init() {
                     selected[0].classList.remove('selected');
                     document.getElementById("buy").disabled = true; 
                     player.action.push('buy');
+                    $('#actionBar').html('Discarded: ' + adding);
                 } else {
                     alert('not enough resources');
                 }
@@ -471,6 +473,7 @@ function init() {
 
         document.getElementById("draw").disabled = true; 
         player.action.push('draw');
+        $('#actionBar').html('Drew: ' + drawNum + ' cards');
     });
 
     $('#dig').click(function() {
@@ -541,6 +544,7 @@ function init() {
 
         $('#junk').html('junkyard: ' + junkyard.length);
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
+        $('#actionBar').html('Dug: 1 card');
     });
 }
 

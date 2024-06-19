@@ -95,4 +95,5 @@
 06-13 added end game conditions  
 06-14 fixed end game  
 06-17 fixed draw function  
-06-17 fixed empty inventory  
+06-18 fixed empty inventory  
+06-19 added action bar  
