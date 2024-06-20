@@ -433,7 +433,7 @@ function init() {
 
                         document.getElementById("buy").disabled = true; 
                         player.action.push('buy');
-                        $('#actionBar').html('Bought: ' + adding);
+                        $('#actionBar').html('Bought: ' + adding.split('.')[0]);
                     } else {
                         alert('not enough resources');
                     }
@@ -445,7 +445,7 @@ function init() {
                     selected[0].classList.remove('selected');
                     document.getElementById("buy").disabled = true; 
                     player.action.push('buy');
-                    $('#actionBar').html('Discarded: ' + adding);
+                    $('#actionBar').html('Bought: ' + adding.split('.')[0]);
                 } else {
                     alert('not enough resources');
                 }
@@ -481,12 +481,17 @@ function init() {
         if (selected.length == 0) {
             return;
         }
-        let drawn = junkyard.slice(0, selected.length);
+        let depth = 0
         for (let i=0; i<selected.length; i++) {
+            depth += cardTypes[selected[i].src.split('/').pop().split('.')[0]][3];
+        }
+        for (let i=0; i<depth; i++) {
             junkyard.shift();
         }
+        let drawn = junkyard.slice(0, depth);
+        
         dig(drawn);
-        document.getElementById('junkSample').style.setProperty('--hand-size', selected.length);
+        document.getElementById('junkSample').style.setProperty('--hand-size', depth);
         document.getElementById('junkSample').style.display='grid';
         selected.forEach(e => e.remove());
         
