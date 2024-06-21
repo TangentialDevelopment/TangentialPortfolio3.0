@@ -98,3 +98,4 @@
 06-18 fixed empty inventory  
 06-19 added action bar  
 06-20 fixed digging  
+06-21 fixed buying  

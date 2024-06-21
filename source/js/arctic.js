@@ -1,3 +1,7 @@
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function nullCheck(array) {
     for (let i=0; i<array.length;i++) {
         let value = array[i];
@@ -261,6 +265,7 @@ function init() {
             let digV = 0;
             let huntV = 0;
             let medV = 0;
+            let hasHunt = 0;
 
             document.getElementById("discard").disabled = false;
 
@@ -307,7 +312,7 @@ function init() {
                     document.getElementById("dig").disabled = false; 
                 }
 
-                if (huntV+medV == 0 || (player.action.includes('buy'))) {
+                if ((hunt.includes(null) && medV == 0) || (player.action.includes('buy'))) {
                     document.getElementById("buy").disabled = true; 
                 } else {
                     document.getElementById("buy").disabled = false;
@@ -345,11 +350,13 @@ function init() {
 
         if (turn > 2) {
             let value = 0;
+            let target = randomIntFromInterval(0, 5);
+            console.log(target);
             fightSaved.forEach(
                 (element) => value += cardTypes[element.split('.')[0]][6]
             );
 
-            if (value > 4) {
+            if (value > target) {
                 let prize = contested.pop();
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
