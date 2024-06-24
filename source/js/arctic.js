@@ -140,18 +140,18 @@ function init() {
         scout:       [2,    1,    2,     null, null,  null,      2,      1,     0],
         hunter:      [0,    1,    null,  null, 2,     null,      1,      1,     0],
         brawler:     [2,    0,    null,  1,    null,  null,      2,      1,     0],
-        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2,     2],
+        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2,     1],
         thug:        [3,    3,    null,  1,    null,  null,      3,      3,     0],
         saboteur:    [1,    1,    null,  1,    null,  null,      1,      1,     0],
         sniper:      [2,    2,    null,  null, null,  null,      null,   2,     0],
         refugee:     [0,    0,    null,  0,    0,     null,      null,   1,     0],
         //junkyard
         junk:        [null, null, null,  null, null,  null,      null,   0,     1],
-        medkit:      [null, null, null,  null, null,  2,         null,   0,     1],
+        medkit:      [null, null, null,  null, 0,     2,         null,   0,     1],
         multitool:   [null, null, null,  1,    1,     null,      1,      0,     1],
         net:         [null, null, null,  null, 2,     null,      1,      0,     1],
         pickaxe:     [null, null, null,  1,    null,  null,      2,      0,     1],
-        pills:       [null, null, null,  null, null,  1,         null,   0,     1], 
+        pills:       [null, null, null,  null, 0,     1,         null,   0,     1], 
         shovel:      [null, null, null,  2,    null,  null,      1,      0,     1],
         spear:       [null, null, null,  null, 1,     null,      2,      0,     1],
         //contested
@@ -257,6 +257,9 @@ function init() {
 
         if (clicked.parentElement.id == 'hand') {
             let selected = document.getElementById('hand').querySelectorAll('img.selected');
+            let tool = [];
+            let toolCount = 0;
+            let personCount = 0;
             let hunt = [];
             let medicine = [];
             let draw = [];
@@ -265,8 +268,7 @@ function init() {
             let digV = 0;
             let huntV = 0;
             let medV = 0;
-            let hasHunt = 0;
-
+            
             document.getElementById("discard").disabled = false;
 
             if (turn > 1) {
@@ -280,6 +282,7 @@ function init() {
                 dig.push(type[3]);
                 hunt.push(type[4]);
                 medicine.push(type[5]);
+                tool.push(type[8]);
 
                 for (i in hunt) {
                     huntV += hunt[i];
@@ -294,28 +297,44 @@ function init() {
                 document.getElementById("buy").disabled = true;
                 document.getElementById("dig").disabled = true;
                 document.getElementById("discard").disabled = true;
+                $('#actionBar').html('');
             } else {
-                if (nullCheck(draw) || (player.action.includes('draw'))) {
-                    document.getElementById("draw").disabled = true; 
-                } else {
-                    for (i in draw) {
-                        drawV += draw[i];
+                for (i in tool) {
+                    if (tool[i] == 1) {
+                        toolCount += 1;
                     }
-                    document.getElementById("draw").disabled = false; 
-                }
-                if (nullCheck(dig) || (player.action.includes('dig'))) {
-                    document.getElementById("dig").disabled = true; 
-                } else {
-                    for (i in dig) {
-                        digV += dig[i];
+                    if (tool[i] == 0) {
+                        personCount += 1;
                     }
-                    document.getElementById("dig").disabled = false; 
                 }
+                console.log(toolCount, personCount);
 
-                if ((hunt.includes(null) && medV == 0) || (player.action.includes('buy'))) {
-                    document.getElementById("buy").disabled = true; 
+                if (toolCount > personCount) {
+                    $('#actionBar').html('Only 1 tool per person');
                 } else {
-                    document.getElementById("buy").disabled = false;
+                    $('#actionBar').html('');
+                    if (nullCheck(draw) || (player.action.includes('draw'))) {
+                        document.getElementById("draw").disabled = true; 
+                    } else {
+                        for (i in draw) {
+                            drawV += draw[i];
+                        }
+                        document.getElementById("draw").disabled = false; 
+                    }
+                    if (nullCheck(dig) || (player.action.includes('dig'))) {
+                        document.getElementById("dig").disabled = true; 
+                    } else {
+                        for (i in dig) {
+                            digV += dig[i];
+                        }
+                        document.getElementById("dig").disabled = false; 
+                    }
+    
+                    if ((hunt.includes(null) && medV == 0) || (player.action.includes('buy'))) {
+                        document.getElementById("buy").disabled = true; 
+                    } else {
+                        document.getElementById("buy").disabled = false;
+                    }
                 }
             }
         }

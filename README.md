@@ -99,3 +99,4 @@
 06-19 added action bar  
 06-20 fixed digging  
 06-21 fixed buying  
+06-24 added tool tracking  
