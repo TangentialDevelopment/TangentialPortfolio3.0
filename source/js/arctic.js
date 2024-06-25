@@ -165,7 +165,6 @@ function init() {
     };
     var shopInven = {
         scav: 8,
-        // scav: 1,
         scout: 8,
         hunter: 8,
         brawler: 6,
@@ -174,6 +173,7 @@ function init() {
         saboteur: 8,
         sniper: 5
     }
+    var shopType = ['scav', 'scout', 'hunter', 'brawler', 'groupLeader', 'thug', 'saboteur', 'sniper']
     var junkyard = [
         'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png',
         'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png',
@@ -370,7 +370,16 @@ function init() {
         if (turn > 2) {
             let value = 0;
             let target = randomIntFromInterval(0, 5);
-            console.log(target);
+            let otherBuy = Math.floor(Math.random() * 4);
+            for (let i=0; i<=otherBuy; i++) {
+                let other = Math.floor(Math.random() * 7);
+                if (shopInven[shopType[other]] > 0) {
+                    let inven = shopInven[shopType[other]];
+                    shopInven[shopType[other]] = inven - 1;
+                }
+            }
+            updateShop(shop, shopInven);
+
             fightSaved.forEach(
                 (element) => value += cardTypes[element.split('.')[0]][6]
             );
@@ -386,6 +395,7 @@ function init() {
                 $('#fightPreview').html('Fight Lost');
             }
         }
+
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
         player = endTurn(hand, player);
         if (endGame(player, contested, cardTypes)) {
