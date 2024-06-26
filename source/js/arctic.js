@@ -140,7 +140,7 @@ function init() {
         scout:       [2,    1,    2,     null, null,  null,      2,      1,     0],
         hunter:      [0,    1,    null,  null, 2,     null,      1,      1,     0],
         brawler:     [2,    0,    null,  1,    null,  null,      2,      1,     0],
-        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2,     1],
+        groupLeader: [2,    2,    2,     2,    2,     null,      2,      2,     0],
         thug:        [3,    3,    null,  1,    null,  null,      3,      3,     0],
         saboteur:    [1,    1,    null,  1,    null,  null,      1,      1,     0],
         sniper:      [2,    2,    null,  null, null,  null,      null,   2,     0],
@@ -288,7 +288,7 @@ function init() {
                     huntV += hunt[i];
                 }
                 for (i in medicine) {
-                    medV =+ medicine[i];
+                    medV += medicine[i];
                 }
             }
 
@@ -307,7 +307,6 @@ function init() {
                         personCount += 1;
                     }
                 }
-                console.log(toolCount, personCount);
 
                 if (toolCount > personCount) {
                     $('#actionBar').html('Only 1 tool per person');
@@ -317,6 +316,7 @@ function init() {
                         document.getElementById("draw").disabled = true; 
                     } else {
                         for (i in draw) {
+                            console.log(i, draw[i]);
                             drawV += draw[i];
                         }
                         document.getElementById("draw").disabled = false; 

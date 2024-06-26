@@ -101,3 +101,4 @@
 06-21 fixed buying  
 06-24 added tool tracking  
 06-25 simulated buying  
+06-26 fixed medicine and draw bugs  
