@@ -147,8 +147,8 @@ function init() {
         refugee:     [0,    0,    null,  0,    0,     null,      null,   1,     0],
         //junkyard
         junk:        [null, null, null,  null, null,  null,      null,   0,     1],
-        medkit:      [null, null, null,  null, 0,     2,         null,   0,     1],
-        multitool:   [null, null, null,  1,    1,     null,      1,      0,     1],
+        medkit:      [null, null, null,  null, 0,     2,         null,   0,     1], //make not tool
+        multitool:   [null, null, null,  1,    1,     null,      1,      0,     1], //make not tool
         net:         [null, null, null,  null, 2,     null,      1,      0,     1],
         pickaxe:     [null, null, null,  1,    null,  null,      2,      0,     1],
         pills:       [null, null, null,  null, 0,     1,         null,   0,     1], 
@@ -371,13 +371,19 @@ function init() {
             let value = 0;
             let target = randomIntFromInterval(0, 5);
             let otherBuy = Math.floor(Math.random() * 4);
+            let log = '';
             for (let i=0; i<=otherBuy; i++) {
                 let other = Math.floor(Math.random() * 7);
+                if (shopType[other] == 'thug') {
+                    other = Math.floor(Math.random() * 7);
+                }
                 if (shopInven[shopType[other]] > 0) {
                     let inven = shopInven[shopType[other]];
+                    log += shopType[other] + ' ';
                     shopInven[shopType[other]] = inven - 1;
                 }
             }
+            $('#actionBar').html('other players bought: ' + log);
             updateShop(shop, shopInven);
 
             fightSaved.forEach(
