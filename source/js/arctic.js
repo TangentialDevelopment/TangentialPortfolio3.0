@@ -147,8 +147,8 @@ function init() {
         refugee:     [0,    0,    null,  0,    0,     null,      null,   1,     0],
         //junkyard
         junk:        [null, null, null,  null, null,  null,      null,   0,     1],
-        medkit:      [null, null, null,  null, 0,     2,         null,   0,     1], //make not tool
-        multitool:   [null, null, null,  1,    1,     null,      1,      0,     1], //make not tool
+        medkit:      [null, null, null,  null, 0,     2,         null,   0,     0],
+        multitool:   [null, null, null,  1,    1,     null,      1,      0,     0],
         net:         [null, null, null,  null, 2,     null,      1,      0,     1],
         pickaxe:     [null, null, null,  1,    null,  null,      2,      0,     1],
         pills:       [null, null, null,  null, 0,     1,         null,   0,     1], 
