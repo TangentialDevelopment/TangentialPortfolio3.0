@@ -104,3 +104,4 @@
 06-26 fixed medicine and draw bugs  
 06-27 added buy log  
 06-28 fixed tools  
+07-01 added more buy and dig logic  

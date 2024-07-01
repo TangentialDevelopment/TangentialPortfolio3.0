@@ -165,15 +165,15 @@ function init() {
     };
     var shopInven = {
         scav: 8,
+        brawler: 6,
         scout: 8,
         hunter: 8,
-        brawler: 6,
         groupLeader: 5,
         thug: 5,
         saboteur: 8,
         sniper: 5
     }
-    var shopType = ['scav', 'scout', 'hunter', 'brawler', 'groupLeader', 'thug', 'saboteur', 'sniper']
+    var shopType = ['scav', 'brawler', 'scout', 'hunter', 'groupLeader', 'thug', 'saboteur', 'sniper']
     var junkyard = [
         'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png',
         'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png',
@@ -367,12 +367,12 @@ function init() {
 
         $('#discardPile').html('discard: ' + player.discard.length);
 
+        let log = '';
+        let otherBuy = Math.floor(Math.random() * 4);
         if (turn > 2) {
             let value = 0;
-            let target = randomIntFromInterval(0, 5);
-            let otherBuy = Math.floor(Math.random() * 4);
-            let log = '';
-            for (let i=0; i<=otherBuy; i++) {
+            
+            for (let i=0; i<otherBuy; i++) {
                 let other = Math.floor(Math.random() * 7);
                 if (shopType[other] == 'thug') {
                     other = Math.floor(Math.random() * 7);
@@ -383,13 +383,11 @@ function init() {
                     shopInven[shopType[other]] = inven - 1;
                 }
             }
-            $('#actionBar').html('other players bought: ' + log);
-            updateShop(shop, shopInven);
-
             fightSaved.forEach(
                 (element) => value += cardTypes[element.split('.')[0]][6]
             );
 
+            let target = randomIntFromInterval(0, 5);
             if (value > target) {
                 let prize = contested.pop();
                 $('#fightPreview').show();
@@ -400,7 +398,34 @@ function init() {
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Lost');
             }
+        } else {
+            for (let i=0; i<otherBuy; i++) {
+                let early = Math.floor(Math.random() * 2);
+                if (shopInven[shopType[early]] > 0) {
+                    let inven = shopInven[shopType[early]];
+                    log += shopType[early] + ' ';
+                    shopInven[shopType[early]] = inven - 1;
+                }
+            }
         }
+
+        let digNum = 0;
+        for (let i=0;i<4;i++) {
+            let tempDig = junkyard.shift();
+            if (tempDig == 'junk.png') {
+                junkyard.push(tempDig);
+            } else {
+                digNum += 1;
+            }
+        }
+        let digLog = '<br> other players dug: ' + digNum;
+
+        if (log != '') {
+            $('#actionBar').html('other players bought: ' + log + digLog);
+        } else {
+            $('#actionBar').html(digLog);
+        }
+        updateShop(shop, shopInven);
 
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
         player = endTurn(hand, player);
