@@ -107,7 +107,7 @@ function dig(junk) {
 }
 
 function tribeCount(player, cardTypes) {
-    var tribeCount = 0;
+    let tribeCount = 0;
     player.deck.forEach(
         (element) => tribeCount += cardTypes[element.split('.')[0]][7]
     );
@@ -120,11 +120,30 @@ function tribeCount(player, cardTypes) {
 
     return tribeCount;
 }
+function showEnd(player) {
+    let end = '';
+    player.deck.forEach(
+        (element) => end += (element.split('.')[0] + ' ')
+    );
+    player.discard.forEach(
+        (element) => end += (element.split('.')[0] + ' ')
+    );
+    player.hand.forEach(
+        (element) => end += (element.split('.')[0] + ' ')
+    );
 
-function endGame(player, deck, cardTypes) {   
+    return end;
+}
+
+function endGame(player, deck, cardTypes) {  
     if (deck.length == 1) {
         $('#end').click(function() {
-            alert('Tribe Count: ' + tribeCount(player, cardTypes));
+            $('#endgame').html('Tribe Count: ' + tribeCount(player, cardTypes) + '<br> Your Deck: ' + showEnd(player));
+            $('#shop').hide();
+            $('#shopCount').hide();
+            $('#junk').hide();
+            $('#contested').hide();
+            document.getElementById("end").disabled = true;
             return true;
         });
     }
@@ -172,8 +191,8 @@ function init() {
         thug: 5,
         saboteur: 8,
         sniper: 5
-    }
-    var shopType = ['scav', 'brawler', 'scout', 'hunter', 'groupLeader', 'thug', 'saboteur', 'sniper']
+    };
+    var shopType = ['scav', 'brawler', 'scout', 'hunter', 'groupLeader', 'thug', 'saboteur', 'sniper'];
     var junkyard = [
         'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png', 'junk.png',
         'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png',
@@ -183,7 +202,7 @@ function init() {
         'net.png', 'net.png', 'net.png', 'net.png', 
         'shovel.png', 'shovel.png',
         'spear.png', 'spear.png'
-    ]
+    ];
     var contested = [
         'fieldCrew.png', 'fieldCrew.png', 'tf3.png', 'tf3.png', 'tf4.png', 'tf4.png', 'tf5.png', 'tf5.png', 
         'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
@@ -193,7 +212,10 @@ function init() {
         hand: [],
         discard: [],
         action: []
-    }
+    };
+    var simPlayer1 = ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'];
+    var simPlayer2 = ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'];
+    var simPlayer3 = ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'];
     var fightSaved = [];
 
     player.deck = shuffle(player.deck);
@@ -388,13 +410,15 @@ function init() {
             );
 
             let target = randomIntFromInterval(0, 5);
+            let prize = contested.pop();
             if (value > target) {
-                let prize = contested.pop();
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
                 player = addDeck(player, prize);
             } else {
-                contested.pop();
+                // let winner = 'simPlayer' + randomIntFromInterval(1, 3);
+                // winner.push(prize);
+                // console.log(winner)
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Lost');
             }
