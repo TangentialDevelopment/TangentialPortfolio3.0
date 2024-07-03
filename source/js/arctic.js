@@ -416,9 +416,9 @@ function init() {
                 $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
                 player = addDeck(player, prize);
             } else {
-                // let winner = 'simPlayer' + randomIntFromInterval(1, 3);
-                // winner.push(prize);
-                // console.log(winner)
+                let players = [simPlayer1, simPlayer2, simPlayer3];
+                let winner = randomIntFromInterval(0, 2);
+                players[winner].push(prize);
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Lost');
             }
@@ -434,11 +434,13 @@ function init() {
         }
 
         let digNum = 0;
-        for (let i=0;i<4;i++) {
+        for (let i=0;i<3;i++) {
             let tempDig = junkyard.shift();
             if (tempDig == 'junk.png') {
                 junkyard.push(tempDig);
             } else {
+                let players = [simPlayer1, simPlayer2, simPlayer3];
+                players[i].push(tempDig);
                 digNum += 1;
             }
         }

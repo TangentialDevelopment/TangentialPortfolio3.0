@@ -106,3 +106,4 @@
 06-28 fixed tools  
 07-01 added more buy and dig logic  
 07-02 adjusting end screen  
+07-03 other players dig and win  
