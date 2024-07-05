@@ -134,15 +134,41 @@ function showEnd(player) {
 
     return end;
 }
+function oppScore(oppo) {
+    let final = '';
+    oppo.forEach(
+        (element) => final += (element.split('.')[0] + ' ')
+    );
+    return final;
 
-function endGame(player, deck, cardTypes) {  
+}
+function oppCount(oppo, cardTypes) {
+    let count = 0;
+    oppo.forEach(
+        (element) => count += cardTypes[element.split('.')[0]][7]
+    );
+    return count;
+}
+
+function endGame(player, deck, cardTypes, opp1, opp2, opp3) {  
+    $('#endgame').show();
     if (deck.length == 1) {
         $('#end').click(function() {
-            $('#endgame').html('Tribe Count: ' + tribeCount(player, cardTypes) + '<br> Your Deck: ' + showEnd(player));
+            $('#pCount').html('Your Tribe Count: ' + tribeCount(player, cardTypes));
+            $('#pDeck').html(showEnd(player));
+            $('#opp1Count').html('Opponent 1 Tribe Count: ' + oppCount(opp1, cardTypes));
+            $("#opp1Deck").html(oppScore(opp1));
+            $('#opp2Count').html('Opponent 2 Tribe Count: ' + oppCount(opp2, cardTypes));
+            $("#opp2Deck").html(oppScore(opp2));
+            $('#opp3Count').html('Opponent 3 Tribe Count: ' + oppCount(opp3, cardTypes));
+            $("#opp3Deck").html(oppScore(opp3));
+
             $('#shop').hide();
             $('#shopCount').hide();
             $('#junk').hide();
             $('#contested').hide();
+            $('.player').hide();
+            $('.interaction').hide();
             document.getElementById("end").disabled = true;
             return true;
         });
@@ -227,6 +253,7 @@ function init() {
     document.getElementById("buy").disabled = true;
     document.getElementById("dig").disabled = true;
     document.getElementById("discard").disabled = true;
+    $('#endgame').hide();
 
     $('#contested').html('contested: ' + contested.length);
     $('#discardPile').html('discard: ' + player.discard.length);
@@ -455,7 +482,7 @@ function init() {
 
         $('#tribeCount').html('Tribe Count: ' + tribeCount(player, cardTypes));
         player = endTurn(hand, player);
-        if (endGame(player, contested, cardTypes)) {
+        if (endGame(player, contested, cardTypes, simPlayer1, simPlayer2, simPlayer3)) {
             return;
         } else {
             fightSaved = [];
