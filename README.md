@@ -108,3 +108,4 @@
 07-02 adjusting end screen  
 07-03 other players dig and win  
 07-05 detailed end game  
+07-22 added resume updates and minor styling  

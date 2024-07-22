@@ -1,7 +1,7 @@
 function init() {
   $(window).ready(function() {
-    $('.popup-load').show();
-    $('#overlay').show();
+    // $('.popup-load').show();
+    // $('#overlay').show();
 
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
