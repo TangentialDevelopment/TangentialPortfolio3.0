@@ -1,13 +1,14 @@
 function init() {
   $(window).ready(function() {
-    // $('.popup-load').show();
-    // $('#overlay').show();
+    $('.popup-load').show();
+    $('#overlay').show();
 
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
+    // scroll disable
+    // if ('scrollRestoration' in history) {
+    //   history.scrollRestoration = 'manual';
+    // }
 
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
   });
 
   setInterval(function() {
@@ -53,18 +54,6 @@ function init() {
     // )
 
     //the overlay
-    // $(function() {
-    //   $('.close').click(function() {
-    //     $('.popup-load').hide();
-    //     $('#overlay').hide();
-    //     return false;
-    //   });
-    // });
-    document.onkeydown = function e(){
-      $('.popup-load').hide();
-      $('#overlay').hide();
-      return false;
-    }
     document.addEventListener("click", (event) => {
       $('.popup-load').hide();
       $('#overlay').hide();
