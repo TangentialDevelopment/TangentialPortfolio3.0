@@ -234,7 +234,7 @@ function init() {
         'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
     ];
     var player = {
-        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
+        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png', 'sniper.png', 'sniper.png', 'sniper.png', 'sniper.png'],
         hand: [],
         discard: [],
         action: []
@@ -410,7 +410,10 @@ function init() {
         turn += 1;
         let selected = document.getElementsByClassName('card');
         let length = selected.length;
+        let cards = []
+        
         for (let i=0; i<length; i++) {
+            cards.push(selected[0].src.split('/').pop().split('.')[0]);
             selected[0].remove();
         }
 
@@ -420,6 +423,7 @@ function init() {
         let otherBuy = Math.floor(Math.random() * 4);
         if (turn > 2) {
             let value = 0;
+            console.log(cards);
             
             for (let i=0; i<otherBuy; i++) {
                 let other = Math.floor(Math.random() * 7);
@@ -437,6 +441,14 @@ function init() {
             );
 
             let target = randomIntFromInterval(0, 5);
+            for (let i=0; i<cards.length; i++) {
+                if (cards[i] == 'sniper') {
+                    target -= 2;
+                }
+                if (cards[i] == 'saboteur') {
+                    target -= 1;
+                }
+            }
             let prize = contested.pop();
             if (value > target) {
                 $('#fightPreview').show();
