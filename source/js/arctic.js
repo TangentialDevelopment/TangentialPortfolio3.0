@@ -234,7 +234,7 @@ function init() {
         'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
     ];
     var player = {
-        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png', 'sniper.png', 'sniper.png', 'sniper.png', 'sniper.png'],
+        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png', 'sniper.png', 'saboteur.png', 'saboteur.png', 'sniper.png'],
         hand: [],
         discard: [],
         action: []
@@ -443,9 +443,11 @@ function init() {
             let target = randomIntFromInterval(0, 5);
             for (let i=0; i<cards.length; i++) {
                 if (cards[i] == 'sniper') {
+                    // $('#interupt').show();
                     target -= 2;
                 }
                 if (cards[i] == 'saboteur') {
+                    // $('#interupt').show();
                     target -= 1;
                 }
             }
