@@ -258,7 +258,7 @@ p {
 
 .education {
     // background-color: $color8;
-    // padding-top: 135px;
+    padding-top: 135px;
     font-size: 12px;
 
     h2 {
@@ -266,15 +266,32 @@ p {
     }
 }
 
+.games {
+    padding-top: 135px;
+}
+
 .nav {
+    // position: absolute;
     padding-top: 80px;
     padding-bottom: 30px;
-    width: 70%;
-    margin: 0 auto;
+    width: 30%;
+    // margin: 0 auto;
+    margin-left: 10%;
+    flex-direction: column;
+    // z-index: 99;
 }
 
 .nav-item {
     border: 3px solid $color10;
+}
+
+.content {
+    // position: absolute;
+    margin-left: 40%;
+    margin-top: -300px;
+    // z-index: -1;
+    width: 50%;
+    height: 600px;
 }
 
 .selector {
@@ -289,4 +306,12 @@ p {
 
 h3 {
     margin-top: 30px;
+}
+
+// .page {
+//     padding: 15px;
+// }
+
+.footer {
+    margin-top: 15px;
 }
