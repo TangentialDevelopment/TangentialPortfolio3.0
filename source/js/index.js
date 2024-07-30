@@ -1,7 +1,8 @@
 function init() {
   $(window).ready(function() {
-    // $('.popup-load').show();
-    // $('#overlay').show();
+    // re put stuff back
+    $('.popup-load').show();
+    $('#overlay').show();
 
     // scroll disable
     // if ('scrollRestoration' in history) {

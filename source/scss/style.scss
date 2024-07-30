@@ -16,6 +16,7 @@ body {
     padding: 15px 15px;
     text-align: center;
     font-family: 'roboto';
+    color: $textcolor1;
 }
 
 p {
@@ -296,6 +297,9 @@ p {
 
 .selector {
     padding: 10px;
+    background-color: $color10;
+    margin: 0;
+    color: $textcolor2;
 }
 
 .current {
