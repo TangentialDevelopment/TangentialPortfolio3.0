@@ -135,11 +135,9 @@ p {
     padding: 0;
     max-width: 100%;
     white-space: nowrap;
-    // margin-right: 170px;
 
     display: flex;
     flex-wrap: nowrap;
-    // justify-content: space-between;
     flex-direction: column;
 
     h4 {
@@ -157,30 +155,15 @@ p {
 }
 
 .skills {
-    // background-color: $color10;
-    // width: 1800px;
-    // height: 400px;
-    // border-radius: 50%;
     padding-top: 75px 200px 25px 250px;
-    // margin-right: 100px;
     width: 90%;
-
-    // h2 {
-    //     padding-top: 70px;
-    // }
 
     ol {
         padding: 0 15px 0 15px;
         font-size: 13px;
     }
     
-    // li {
-    //     background-color: $color5;
-    // }
-
     .ul-tree {
-        // padding-top: 20px;
-        // width: 80%;
         margin: 0 auto;
     }
 
@@ -189,15 +172,6 @@ p {
         display: grid;
         place-items: center;
         grid-template-rows: repeat(4, 50px);
-
-        // p {
-        //     width: 100%;
-        //     background-color: $color8;
-        // }
-
-        // p:nth-child(2n) {
-        //     background-color: $color4;
-        // }
 
         .clicked {
             font-size: 23px;
@@ -231,7 +205,6 @@ p {
 }
 
 .experience {
-    // background-color: $color9;
     // padding-top: 75px;
     font-size: 14px;
     line-height: 34%;
@@ -240,7 +213,6 @@ p {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        // background-color: $color5;
     }
     
     h4 {
@@ -258,7 +230,6 @@ p {
 }
 
 .education {
-    // background-color: $color8;
     padding-top: 135px;
     font-size: 12px;
 
@@ -272,14 +243,12 @@ p {
 }
 
 .nav {
-    // position: absolute;
     padding-top: 80px;
     padding-bottom: 30px;
     width: 30%;
     // margin: 0 auto;
     margin-left: 10%;
     flex-direction: column;
-    // z-index: 99;
 }
 
 .nav-item {
@@ -287,10 +256,8 @@ p {
 }
 
 .content {
-    // position: absolute;
     margin-left: 40%;
     margin-top: -300px;
-    // z-index: -1;
     width: 50%;
     height: 600px;
 }
@@ -304,17 +271,12 @@ p {
 
 .current {
     font-size: 45px;
-    // background-color: $color10;
     margin-bottom: 0;
 }
 
 h3 {
     margin-top: 30px;
 }
-
-// .page {
-//     padding: 15px;
-// }
 
 .footer {
     margin-top: 15px;

@@ -114,4 +114,5 @@
 07-25 arctic added interrupts  
 07-26 started interrupt functions  
 07-29 reconfigured the navigation  
-07-39 adjusted colors  
+07-30 adjusted colors  
+07-31 sass cleanup  
