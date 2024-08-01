@@ -234,7 +234,9 @@ function init() {
         'sledTeam.png', 'sledTeam.png', 'grenade.png', 'grenade.png', 'wolf.png', 'wolf.png'
     ];
     var player = {
-        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png', 'sniper.png', 'saboteur.png', 'saboteur.png', 'sniper.png'],
+        deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png'],
+        // deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png', 'pills.png', 'pills.png', 'pills.png', 'pills.png', 'medkit.png', 'medkit.png', 'medkit.png', 'medkit.png'],
+        // deck: ['scav.png','scav.png','scav.png','brawler.png','refugee.png','refugee.png','refugee.png','refugee.png','shovel.png','spear.png', 'sniper.png', 'saboteur.png', 'saboteur.png', 'sniper.png'],
         hand: [],
         discard: [],
         action: []
@@ -357,7 +359,9 @@ function init() {
                     }
                 }
 
-                if (toolCount > personCount) {
+                let toolSelect = selected[0].src.split('/').pop().split('.')[0];
+
+                if (toolCount > personCount && (toolSelect != 'medkit' || toolSelect != 'pills')) {
                     $('#actionBar').html('Only 1 tool per person');
                 } else {
                     $('#actionBar').html('');

@@ -116,3 +116,4 @@
 07-29 reconfigured the navigation  
 07-30 adjusted colors  
 07-31 sass cleanup  
+08-01 arctic fixed tools  
