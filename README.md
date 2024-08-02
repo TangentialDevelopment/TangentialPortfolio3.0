@@ -117,3 +117,4 @@
 07-30 adjusted colors  
 07-31 sass cleanup  
 08-01 arctic fixed tools  
+08-02 arctic added tie breaker  

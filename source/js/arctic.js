@@ -427,7 +427,7 @@ function init() {
         let otherBuy = Math.floor(Math.random() * 4);
         if (turn > 2) {
             let value = 0;
-            console.log(cards);
+            let tie = 0;
             
             for (let i=0; i<otherBuy; i++) {
                 let other = Math.floor(Math.random() * 7);
@@ -442,8 +442,12 @@ function init() {
             }
             fightSaved.forEach(
                 (element) => value += cardTypes[element.split('.')[0]][6]
+                
             );
-
+            fightSaved.forEach(
+                (element) => tie += cardTypes[element.split('.')[0]][7]
+            );
+            
             let target = randomIntFromInterval(0, 5);
             for (let i=0; i<cards.length; i++) {
                 if (cards[i] == 'sniper') {
@@ -456,10 +460,29 @@ function init() {
                 }
             }
             let prize = contested.pop();
+
             if (value > target) {
                 $('#fightPreview').show();
                 $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
                 player = addDeck(player, prize);
+            } else if (value == target) {
+                let countWin = randomIntFromInterval(2,8);
+                if (tie > countWin) {
+                    $('#fightPreview').show();
+                    $('#fightPreview').html('Fight Won: ' + prize.split('.')[0]);
+                    player = addDeck(player, prize);
+                } else if (tie == countWin) {
+                    junkyard.push(prize);
+                    $('#fightPreview').show();
+                    $('#fightPreview').html('Tied, prize went to junkyard');
+                } else {
+                    let players = [simPlayer1, simPlayer2, simPlayer3];
+                    let winner = randomIntFromInterval(0, 2);
+                    players[winner].push(prize);
+                    $('#fightPreview').show();
+                    $('#fightPreview').html('Fight Lost');
+                }
+
             } else {
                 let players = [simPlayer1, simPlayer2, simPlayer3];
                 let winner = randomIntFromInterval(0, 2);
