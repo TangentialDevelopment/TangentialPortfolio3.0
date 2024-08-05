@@ -11,13 +11,22 @@ h1 {
     color: $color1;
 }
 
+html {
+    background-color: #FEDCC8;
+}
+
 body {
-    background-color: $color1;
     padding: 15px 15px;
     text-align: center;
     font-family: 'roboto';
     color: $textcolor1;
+    background-color: $bgcolor2;
 }
+
+// .page {
+//     opacity: 0.90;
+//     background-color: $color1;
+// }
 
 p {
     font-family: $fontfamily-text;
@@ -281,3 +290,56 @@ h3 {
 .footer {
     margin-top: 15px;
 }
+
+*{
+    box-sizing: border-box;
+}
+
+.parallax {
+    // taken from samdbeckham
+    perspective: 100px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    margin-left: -1500px;
+    z-index: -1;
+}
+
+.parallax__layer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    img{
+        display: block;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.parallax__cover{
+    background: #2D112B;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 2000px;
+    z-index: 2;
+}
+
+// $parallax__layers: 6;
+
+// @for $i from 0 through $parallax__layers {
+//     $x: ($parallax__layers - $i) / 2;
+//     .parallax__layer__#{$i}{
+//         transform: translateZ(-100 * $x#{px}) scale($x + 1);
+//     }
+// }
