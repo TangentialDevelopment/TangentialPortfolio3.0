@@ -120,3 +120,4 @@
 08-02 arctic added tie breaker  
 08-05 added parallax effect from samdbeckham  
 08-06 trying nextjs  
+08-07 nextjs chapter 2  
