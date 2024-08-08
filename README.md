@@ -121,3 +121,4 @@
 08-05 added parallax effect from samdbeckham  
 08-06 trying nextjs  
 08-07 nextjs chapter 2  
+08-08 nextjs chapter 3  
