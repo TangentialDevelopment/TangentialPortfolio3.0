@@ -122,3 +122,4 @@
 08-06 trying nextjs  
 08-07 nextjs chapter 2  
 08-08 nextjs chapter 3  
+08-09 nextjs chapter 4  
