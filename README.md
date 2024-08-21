@@ -130,3 +130,4 @@
 08-16 nextjs chapter 9  
 08-19 nextjs chapter 10  
 08-20 nextjs chapter 11  
+08-21 nextjs chapter 12  
