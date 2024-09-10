@@ -136,4 +136,4 @@
 08-26 nextjs chapter 15  
 08-27 nextjs chapter 16
 08-28 react foundationals  
-  
+09-10 updated some resume lines  
