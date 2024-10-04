@@ -137,3 +137,4 @@
 08-27 nextjs chapter 16
 08-28 react foundationals  
 09-10 updated some resume lines  
+10-04 started moderator project  
