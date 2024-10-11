@@ -1,0 +1,69 @@
+.box {
+    max-width: 80%;
+    padding: 10%;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .title-child {
+        max-width: 300px;
+        margin: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        font-size: 24px;
+        color: grey;
+        justify-content: center;
+        
+        p {
+            margin: 20px;
+        }
+
+        .todo {
+            padding: 0px 7px;
+            background-color: lightblue;
+            border-radius: 50px;
+        }
+    }
+}
+
+.active {
+    border-bottom: 1px blue solid;
+    color: darkgrey;
+}
+
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 5%;
+
+    input::placeholder {
+        padding-left: 15px;
+    }
+}
+
+ul {
+    list-style: none;
+    min-width: 100%;
+}
+
+input {
+    flex: 90%;
+    width: 90%
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+#done {
+    text-decoration: line-through;
+}
+
+.btn {
+    margin-left: 15px;
+}

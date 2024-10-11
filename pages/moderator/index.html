@@ -20,8 +20,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
-    <div class="speakersList"></div>
+    <div class="speakersList">
+      <div class="box">
+        <div class="title">
+            <div id="list" class="title-child active">
+                <p>To-Do</p>
+                <p class="todo" id="todoCount"></p>
+            </div>
+            <div id="completed" class="title-child">
+                <p>Completed</p>
+                <p class="done" id="doneCount"></p>
+            </div>
+        </div>
+        <form action="create" id="form">
+            <ul id="openTasks">
+                <input type="text" class="task 0"  placeholder="+ Add New Task"  oninput="typed(0)">
+            </ul>
+        </form>
+        <form action="display" id="done">
+        </form>
+      </div>
+    </div>
     <div class="speakerTime"></div>
     <div class="caucusTime"></div>
+
+    <script src="../../source/js/moderator.js"></script>
   </body>
 </html>
