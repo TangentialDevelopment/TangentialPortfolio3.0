@@ -30,11 +30,6 @@
     }
 }
 
-.active {
-    border-bottom: 1px blue solid;
-    color: darkgrey;
-}
-
 #form {
     display: flex;
     flex-wrap: wrap;
@@ -51,6 +46,10 @@ ul {
     min-width: 100%;
 }
 
+li {
+    padding-top: 5px;
+}
+
 input {
     flex: 90%;
     width: 90%
@@ -64,6 +63,6 @@ input:focus::placeholder {
     text-decoration: line-through;
 }
 
-.btn {
-    margin-left: 15px;
+.done {
+    padding-right: 5px;
 }
