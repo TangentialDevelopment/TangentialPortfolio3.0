@@ -22,7 +22,7 @@ function typed(update) {
         draggable.setAttribute('class', 'dropzone');
         draggable.setAttribute('draggable', true);
         let close = document.createElement('input')
-        let attr = 'form-check-input done reopen' + update;
+        let attr = 'form-check-input reopen' + update;
         close.setAttribute('class', attr);
         close.setAttribute("type", 'checkbox');
         close.setAttribute("onchange", 'reopen('+ update +')');

@@ -3,31 +3,22 @@
     padding: 10%;
 }
 
-.title {
+#list {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 
-    .title-child {
-        max-width: 300px;
-        margin: 50px;
-        display: flex;
-        flex-direction: row;
-        align-items: baseline;
-        font-size: 24px;
-        color: grey;
-        justify-content: center;
-        
-        p {
-            margin: 20px;
-        }
+    
+}
 
-        .todo {
-            padding: 0px 7px;
-            background-color: lightblue;
-            border-radius: 50px;
-        }
-    }
+p {
+    margin: 20px;
+}
+
+.todo {
+    padding: 0px 7px;
+    background-color: lightblue;
+    border-radius: 50px;
 }
 
 #form {
@@ -63,6 +54,6 @@ input:focus::placeholder {
     text-decoration: line-through;
 }
 
-.done {
-    padding-right: 5px;
+.form-check-input {
+    margin-left: -2.25rem;
 }
