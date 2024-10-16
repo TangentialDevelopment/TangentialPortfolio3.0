@@ -50,8 +50,9 @@ input:focus::placeholder {
     color: transparent;
 }
 
-#done {
+.done {
     text-decoration: line-through;
+    background-color: lightgray;
 }
 
 .form-check-input {

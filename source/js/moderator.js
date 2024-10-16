@@ -12,6 +12,23 @@ function newTask(index) {
     return newInput;
 }
 
+function done(index) {
+    let tasklist = document.getElementById('openTasks').getElementsByTagName('input');
+
+    for(let i=0; i<tasklist.length; i++) {
+        let value = tasklist[i].classList[1];
+        if (value == index) {
+            var place = tasklist[i];
+        }
+    }
+
+    if (place.classList.length == 2) {
+        place.classList.add('done');
+    } else {
+        place.classList.remove('done');
+    }
+}
+
 function typed(update) {
     let size = document.querySelectorAll('.task').length;
     let input = document.querySelectorAll('.task')[size-1];
@@ -25,7 +42,7 @@ function typed(update) {
         let attr = 'form-check-input reopen' + update;
         close.setAttribute('class', attr);
         close.setAttribute("type", 'checkbox');
-        close.setAttribute("onchange", 'reopen('+ update +')');
+        close.setAttribute("onchange", 'done('+ update +')');
 
         draggable.appendChild(input);
         draggable.appendChild(close);
