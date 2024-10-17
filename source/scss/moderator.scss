@@ -1,6 +1,12 @@
+body {
+    background-color: lightgray;
+}
+
 .box {
+    margin: 0 auto;
     max-width: 80%;
-    padding: 10%;
+    padding: 20px 10%;
+    font-size: 20px;
 }
 
 #list {

@@ -51,6 +51,7 @@ function typed(update) {
 
         count += 1;
         document.getElementById('form').appendChild(newTask(count));
+        input.focus()
 
         let todoCount = document.getElementById('openTasks').getElementsByTagName('li').length;
         document.getElementById('todoCount').innerHTML = todoCount;

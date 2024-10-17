@@ -142,3 +142,4 @@
 10-14 moderator list functionality  
 10-15 moderator list styling  
 10-16 add done  
+10-17 maintain focus  
