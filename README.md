@@ -144,3 +144,4 @@
 10-16 add done  
 10-17 maintain focus  
 10-18 added timer  
+10-19 collage work day  
