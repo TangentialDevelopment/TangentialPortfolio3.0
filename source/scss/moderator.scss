@@ -49,7 +49,7 @@ li {
 
 input {
     flex: 90%;
-    width: 90%
+    width: 900px;
 }
 
 input:focus::placeholder {
@@ -63,4 +63,24 @@ input:focus::placeholder {
 
 .form-check-input {
     margin-left: -2.25rem;
+}
+
+.speakerTime {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.buttons {
+    margin: 0 auto;
+    padding: 5px 10px;
+}
+
+.newTime {
+    margin: 15 300px;
+}
+
+#newTimer {
+    margin: 15 300px;
+    width: 200px;
 }

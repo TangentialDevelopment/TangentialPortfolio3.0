@@ -76,6 +76,7 @@ function startTimer(duration, display) {
     
     document.getElementById('stop').addEventListener('click', function () {
         clearInterval(intervalId);
+        display.textContent = '';
     });
 }
 
@@ -84,8 +85,5 @@ window.onload = function () {
     display = document.querySelector('#time');
     document.getElementById('start').addEventListener('click', function () { 
         startTimer(count, display);
-    });
-    // document.getElementById('reset').addEventListener('click', function () { 
-    //     startTimer(count, display);
-    // }); 
+    }); 
 };
