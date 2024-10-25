@@ -146,3 +146,5 @@
 10-18 added timer  
 10-21 collage work day  
 10-22 styled timer  
+10-24 collage work day  
+10-25 collage work day  
