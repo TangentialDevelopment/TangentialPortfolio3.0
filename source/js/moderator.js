@@ -81,9 +81,19 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var count = 60 * .5,
     display = document.querySelector('#time');
-    document.getElementById('start').addEventListener('click', function () { 
-        startTimer(count, display);
-    }); 
+    document.getElementById('newTimer').addEventListener('click', function() {
+        let time = document.getElementById('newTime').value;
+        if (!time) {
+            time = 0;
+        }
+
+        document.getElementById('start').addEventListener('click', function () {
+            if (time == 0) {
+                console.log('no time')
+            } else {
+                startTimer(time, display);
+            }
+        }); 
+    });
 };
