@@ -87,6 +87,14 @@ window.onload = function () {
         if (!time) {
             time = 0;
         }
+        let timer = time, minutes, seconds;
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
 
         document.getElementById('start').addEventListener('click', function () {
             if (time == 0) {
@@ -94,6 +102,7 @@ window.onload = function () {
             } else {
                 startTimer(time, display);
             }
-        }); 
+        });
+        document.getElementById('newTime').value = '';
     });
 };

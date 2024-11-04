@@ -150,3 +150,4 @@
 10-25 collage work day  
 10-28 collage work day  
 10-29 added adjustable timer  
+11-03 cleared the adjustable timer and displayed  
