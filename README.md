@@ -150,4 +150,5 @@
 10-25 collage work day  
 10-28 collage work day  
 10-29 added adjustable timer  
-11-03 cleared the adjustable timer and displayed  
+11-04 cleared the adjustable timer and displayed  
+11-05 collage prep day  
