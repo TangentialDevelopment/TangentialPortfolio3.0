@@ -154,4 +154,5 @@
 11-05 collage prep day  
 11-07 collage work day  
 11-08 collage loading screen  
-11-09 collage loading screen  
+11-11 collage loading screen  
+11-12 added styling and disabled  

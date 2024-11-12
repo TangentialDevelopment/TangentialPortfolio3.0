@@ -24,8 +24,10 @@ function done(index) {
 
     if (place.classList.length == 2) {
         place.classList.add('done');
+        place.setAttribute('disabled', true);
     } else {
         place.classList.remove('done');
+        place.removeAttribute('disabled');
     }
 }
 
