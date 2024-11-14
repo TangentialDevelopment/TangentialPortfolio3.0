@@ -21,6 +21,7 @@ function init() {
     // $('.experience').addClass('hide');
     $('.education').addClass('hide');
     $('.games').addClass('hide');
+    $('.projects').addClass('hide');
     
     $('.selector').on('click', function click(){
       $('.current').removeClass("current");
