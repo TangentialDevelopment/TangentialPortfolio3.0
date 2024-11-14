@@ -23,10 +23,10 @@ body {
     background-color: $bgcolor2;
 }
 
-// .page {
-//     opacity: 0.90;
-//     background-color: $color1;
-// }
+.experience {
+    opacity: 0.80;
+    background-color: $color10;
+}
 
 p {
     font-family: $fontfamily-text;
@@ -39,10 +39,10 @@ p {
     width: 100%;
     height: 100%;
     background-color: #000;
-    filter: alpha(opacity=90);
-    // -moz-opacity: 0.7;
-    // -khtml-opacity: 0.7;
-    opacity: 0.98;
+    // filter: alpha(opacity=98);
+    // // -moz-opacity: 0.7;
+    // // -khtml-opacity: 0.7;
+    // opacity: 0.98;
     z-index: 100;
     display: none;
 }
@@ -260,9 +260,9 @@ p {
     flex-direction: column;
 }
 
-.nav-item {
-    border: 3px solid $color10;
-}
+// .nav-item {
+//     border: 3px solid $color10;
+// }
 
 .content {
     margin-left: 40%;
@@ -273,7 +273,7 @@ p {
 
 .selector {
     padding: 10px;
-    background-color: $color10;
+    // background-color: $color10;
     margin: 0;
     color: $textcolor2;
 }
