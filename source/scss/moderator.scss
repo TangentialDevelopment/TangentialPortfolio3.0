@@ -69,6 +69,7 @@ input:focus::placeholder {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 
 .buttons {
@@ -78,6 +79,7 @@ input:focus::placeholder {
 
 #newTime {
     margin: 15 300px;
+    width: 200px;
 }
 
 #newTimer {

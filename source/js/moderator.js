@@ -72,7 +72,7 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            timer = duration;
+            timer = duration - 1;
         }
     }, 1000);
     
@@ -108,3 +108,27 @@ window.onload = function () {
         document.getElementById('newTime').value = '';
     });
 };
+
+let saveFile = () => {
+    const name = document.getElementsByClassName('task');
+    let data = [];
+    for (let item of name) {
+        data.push(item.value);
+    }
+    data.pop();
+    const textToBLOB = new Blob([data], { type: 'text/plain' });
+    const sFileName = 'formData.txt';
+    let newLink = document.createElement("a");
+    newLink.download = sFileName;
+
+    if (window.webkitURL != null) {
+        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+    }
+    else {
+        newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+    }
+
+    newLink.click();
+}
